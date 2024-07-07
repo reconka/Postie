@@ -10,6 +10,7 @@
 [![ESLint](https://img.shields.io/badge/linted_with-eslint-%234B32C3.svg?style=flat-square)](https://eslint.org/)
 [![Version](https://img.shields.io/badge/version-0.0.1-orange.svg?style=flat-square)](https://github.com/Zoltan.Birner/postie)
 [![CI](https://github.com/reconka/Postie/actions/workflows/ci.yml/badge.svg)](https://github.com/reconka/Postie/actions/workflows/ci.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7933f74fa7e41008a8485f014fb562c)](https://app.codacy.com/gh/reconka/Postie/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Postie is a Visual Studio Code extension that provides a development email SMTP server using Nodemailer smtp-server. It allows developers to catch and inspect emails sent by their applications during development, all within the VS Code environment.
 
