@@ -1,0 +1,53 @@
+iframe {
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.m-top {
+  margin-top: 2rem;
+}
+
+.m-bottom {
+  margin-top: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Simulate Mobile View */
+.container--mobile {
+  width: 320px; /* Typical mobile screen width */
+}
+
+/* Simulate Tablet View */
+.container--tablet {
+  width: 768px; /* Typical tablet screen width */
+}
+
+/* Simulate Desktop View */
+.container--desktop {
+  width: 100%; /* Small desktop screen width */
+}
+
+.buttons-container {
+  > * {
+    margin-right: 0.5rem;
+  }
+}

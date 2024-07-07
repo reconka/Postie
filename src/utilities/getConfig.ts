@@ -1,0 +1,15 @@
+import { workspace } from 'vscode'
+export interface Config {
+  runServerOnStartup: boolean
+  maxEmailSize: number
+  smtpServerPort: number
+  allowExternalMails: boolean
+  smtpUsername: string
+  smtpPassword: string
+  showNewEmailNotification: boolean
+  maxStoredEmailsCount: number
+}
+
+export function getConfig<K extends keyof Config>(key: K): Config[K] {
+  return workspace.getConfiguration('postie').get(key) as Config[K]
+}
