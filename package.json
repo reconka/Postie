@@ -16,7 +16,7 @@
     "Other"
   ],
   "description": "Catch Dev emails in your vscode",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "activationEvents": [
     "onStartupFinished"
   ],
