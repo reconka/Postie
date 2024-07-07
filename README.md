@@ -1,4 +1,4 @@
-![Postie Logo](src/media/postie-banner.svg)
+![Postie Logo](https://raw.githubusercontent.com/reconka/Postie/d121331ffe33eede921187f198f694ca0bf81b02/src/media/postie-banner.svg)
 
 # Postie: Development Email SMTP Server for VS Code
 
@@ -9,6 +9,7 @@
 [![jest](https://img.shields.io/badge/tested_with-jest-%23994499.svg?style=flat-square)](https://jestjs.io/)
 [![ESLint](https://img.shields.io/badge/linted_with-eslint-%234B32C3.svg?style=flat-square)](https://eslint.org/)
 [![Version](https://img.shields.io/badge/version-0.0.1-orange.svg?style=flat-square)](https://github.com/Zoltan.Birner/postie)
+[![CI](https://github.com/reconka/Postie/actions/workflows/ci.yml/badge.svg)](https://github.com/reconka/Postie/actions/workflows/ci.yml)
 
 Postie is a Visual Studio Code extension that provides a development email SMTP server using Nodemailer smtp-server. It allows developers to catch and inspect emails sent by their applications during development, all within the VS Code environment.
 
@@ -38,13 +39,13 @@ Alternatively, run the following command in VS Code's quick open (`Ctrl+P`):
 2. Configure your application to send emails to `localhost` on the port specified in the Postie config.
 3. View incoming emails in the Postie section located in the sidebar
 
-![Postie Welcome screen](src/media/email-details-preview.gif)
+![Postie Welcome screen](https://github.com/reconka/Postie/blob/main/src/media/email-details-preview.gif?raw=true)
 
 Postie will store emails in your vscode until you delete them. You can export emails as .eml files or open the email source in your editor.
 
 When previewing email content, links can be opened in your default web browser by clicking on them with `Cmd` (on macOS) or `Ctrl` (on Windows).
 
-For more information, see the [Postie Integration Guide](src/media/integration.md).
+For more information, see the [Postie Integration Guide](https://github.com/reconka/Postie/blob/main/src/media/integration.md).
 
 ## Configuration
 
