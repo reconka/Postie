@@ -9,17 +9,16 @@
     "email",
     "smtp",
     "debug",
-    "catch",
-    "dev"
+    "catch"
   ],
   "categories": [
     "Other"
   ],
-  "description": "Catch Dev emails in your vscode",
+  "description": "Your development emails, caught and managed in VS Code",
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "0.6.1",
+  "version": "0.6.2",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
