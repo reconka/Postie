@@ -16,7 +16,11 @@
     "Other"
   ],
   "description": "Catch Dev emails in your vscode",
-  "version": "0.1.1",
+  "sponsor": {
+    "url": "https://github.com/sponsors/reconka/"
+  },
+  "version": "0.6.1",
+  "icon": "/out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -24,7 +28,7 @@
   "engines": {
     "vscode": "^1.75.0"
   },
-  "main": "./out/extension.js",
+  "main": "out/extension.js",
   "contributes": {
     "walkthroughs": [
       {
