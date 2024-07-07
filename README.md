@@ -1,4 +1,4 @@
-![Postie Logo](https://raw.githubusercontent.com/reconka/Postie/d121331ffe33eede921187f198f694ca0bf81b02/src/media/postie-banner.svg)
+![Postie Logo](https://github.com/reconka/Postie/blob/main/src/media/postie-banner.jpg?raw=true)
 
 # Postie: Development Email SMTP Server for VS Code
 

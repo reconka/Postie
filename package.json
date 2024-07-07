@@ -1,6 +1,10 @@
 {
   "name": "postie",
   "displayName": "postie",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reconka/Postie.git"
+  },
   "keywords": [
     "email",
     "smtp",
