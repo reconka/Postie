@@ -32,7 +32,7 @@ Postie is a Visual Studio Code extension that provides a development email SMTP 
 
 Alternatively, run the following command in VS Code's quick open (`Ctrl+P`):
 
-`ext install reconka.vscode-postie`
+`ext install Postie.postie`
 
 ## Usage
 

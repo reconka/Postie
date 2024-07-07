@@ -29,3 +29,29 @@ jobs:
 
       - name: Build
         run: npm run compile
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install VSCE
+        run: npm install -g vsce
+
+      - name: Package Extension
+        run: vsce package
+
+      - name: Publish Extension
+        run: vsce publish -p ${{ secrets.AZURE_DEVOPS_PAT }}
+        env:
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
