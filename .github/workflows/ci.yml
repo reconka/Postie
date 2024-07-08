@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, development]
   pull_request:
     branches: [main]
 
@@ -29,6 +29,7 @@ jobs:
 
       - name: Build
         run: npm run compile
+
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -53,5 +54,32 @@ jobs:
 
       - name: Publish Extension
         run: vsce publish -p ${{ secrets.AZURE_DEVOPS_PAT }}
+        env:
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+
+  pre-release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/development'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install VSCE
+        run: npm install -g vsce
+
+      - name: Package Extension (Pre-release)
+        run: vsce package --pre-release
+
+      - name: Publish Extension (Pre-release)
+        run: vsce publish --pre-release -p ${{ secrets.AZURE_DEVOPS_PAT }}
         env:
           AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}

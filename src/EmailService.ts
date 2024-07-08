@@ -13,6 +13,7 @@ import { simpleParser, ParsedMail } from 'mailparser'
 
 export class EmailService {
   private emails: EmailSummary[] = []
+  private static instance: EmailService
   private server: SMTPServer | null = null
   public isRunning: boolean = false
   private emailStorageManager: EmailStorageManager
@@ -29,6 +30,13 @@ export class EmailService {
       this.startServer()
     }
     this.emails = this.emailStorageManager.getEmailSummaries()
+  }
+
+  public static getInstance(context: ExtensionContext): EmailService {
+    if (!EmailService.instance) {
+      EmailService.instance = new EmailService(context)
+    }
+    return EmailService.instance
   }
 
   public startServer() {

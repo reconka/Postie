@@ -145,11 +145,12 @@
 
    ```env
    MAIL_MAILER=smtp
-   MAIL_HOST=localhost
+   MAIL_HOST=127.0.0.1
    MAIL_PORT=587
    MAIL_USERNAME=postie
    MAIL_PASSWORD=postie
    MAIL_ENCRYPTION=tls
+   MAIL_VERIFY_PEER=false
    MAIL_FROM_ADDRESS="hello@example.com"
    MAIL_FROM_NAME="${APP_NAME}"
    ```
@@ -163,13 +164,32 @@
    Mail::to('recipient@example.com')->send(new TestMail());
    ```
 
-3. Create a Mailable class if you haven't already:
+3. Edit the config/email.php file to include the 'verify_peer' option:
+
+```php
+ 'mailers' => [
+
+     'smtp' => [
+         'transport' => 'smtp',
+         'url' => env('MAIL_URL'),
+         'host' => env('MAIL_HOST', '127.0.0.1'),
+         'port' => env('MAIL_PORT', 2525),
+         'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+         'username' => env('MAIL_USERNAME'),
+         'password' => env('MAIL_PASSWORD'),
+         'verify_peer'=> env('MAIL_VERIFY_PEER', true), // new
+         'timeout' => null,
+     ],
+
+```
+
+4. Create a Mailable class if you haven't already:
 
    ```bash
    php artisan make:mail TestMail
    ```
 
-4. Edit the TestMail class (located in `app/Mail/TestMail.php`):
+5. Edit the TestMail class (located in `app/Mail/TestMail.php`):
 
    ```php
    <?php
@@ -192,7 +212,7 @@
    }
    ```
 
-5. Create a view for your email (e.g., `resources/views/emails/test.blade.php`):
+6. Create a view for your email (e.g., `resources/views/emails/test.blade.php`):
 
    ```html
    <!DOCTYPE html>
@@ -204,7 +224,7 @@
    </html>
    ```
 
-6. To test, you can create a route or use a controller method:
+7. To test, you can create a route or use a controller method:
 
    ```php
    Route::get('/test-mail', function () {
@@ -213,9 +233,9 @@
    });
    ```
 
-7. Visit the route in your browser or trigger the email send through your application.
+8. Visit the route in your browser or trigger the email send through your application.
 
-8. Check your Postie inbox to see the test email.
+9. Check your Postie inbox to see the test email.
 </details>
 
 <details>
