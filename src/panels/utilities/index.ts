@@ -1,16 +1,17 @@
-/*
- * This file contains utility functions that are used across the panels.
- */
-
 import { Attachment } from '../../types/Email'
+import { sanatize } from '../../utilities/formatters'
 
 export function createTextField(
   icon: string,
   label: string,
   value: string
 ): string {
-  return `<vscode-text-field class="full-width" readonly value="${value}">
-            <span slot="start" class="codicon ${icon}"></span>${label}:
+  return `<vscode-text-field class="full-width" readonly value="${sanatize(
+    value
+  )}">
+            <span slot="start" class="codicon ${icon}"></span>${sanatize(
+    label
+  )}:
           </vscode-text-field>`
 }
 

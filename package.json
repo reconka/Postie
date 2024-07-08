@@ -22,7 +22,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "0.6.3",
+  "version": "0.6.4",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
@@ -224,6 +224,7 @@
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.5.12",
     "@types/node": "16.x",
+    "@types/sanitize-html": "^2.11.0",
     "@types/vscode": "^1.74.0",
     "@types/vscode-webview": "^1.57.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
@@ -245,6 +246,7 @@
     "esbuild-plugin-copy": "^2.1.1",
     "mailparser": "^3.7.1",
     "punycode": "^2.3.1",
+    "sanitize-html": "^2.13.0",
     "smtp-server": "^3.13.4"
   }
 }
