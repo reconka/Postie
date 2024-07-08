@@ -3,7 +3,6 @@
 # Postie: Development Email SMTP Server for VS Code
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![VS Code Version](https://img.shields.io/badge/VS%20Code-%5E1.75.0-blue.svg?style=flat-square)](https://code.visualstudio.com/updates/v1_75)
 [![TypeScript Version](https://img.shields.io/badge/TypeScript-%5E4.8.4-blue.svg?style=flat-square)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html)
 [![jest](https://img.shields.io/badge/tested_with-jest-%23994499.svg?style=flat-square)](https://jestjs.io/)

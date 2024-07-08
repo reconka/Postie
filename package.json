@@ -7,18 +7,22 @@
   },
   "keywords": [
     "email",
+    "server",
     "smtp",
-    "debug",
-    "catch"
+    "debug"
   ],
   "categories": [
     "Other"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
   ],
   "description": "Your development emails, caught and managed in VS Code",
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "0.6.2",
+  "version": "0.6.3",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
@@ -40,7 +44,7 @@
             "title": "Introduction to Postie",
             "description": "Postie is an email catcher server that runs in the background, allowing you to view emails, attachments, and preview emails in different screen sizes directly within VS Code.",
             "media": {
-              "image": "./out/welcome.png",
+              "image": "./out/welcome.jpg",
               "altText": "Postie introduction"
             }
           },
@@ -49,7 +53,7 @@
             "title": "Configure your application to use Postie",
             "description": "To start using Postie, you need to configure your application to send emails to the Postie SMTP server. You can configure the SMTP server port in the [Postie settings](command:workbench.action.openSettings?%22postie%22). ",
             "media": {
-              "markdown": "/src/media/integration.md"
+              "markdown": "/out/integration.md"
             }
           },
           {
