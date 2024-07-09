@@ -10,6 +10,7 @@ import { EmailStorageManager } from './EmailStorageManager'
 import { getConfig } from './utilities/getConfig'
 import { formatDateToTime, formatAddresses } from './utilities/formatters'
 import { simpleParser, ParsedMail } from 'mailparser'
+import { SmtpConnectionManager } from './SMTPConnectionManager'
 
 export class EmailService {
   private emails: EmailSummary[] = []
@@ -20,10 +21,19 @@ export class EmailService {
 
   private _onEmailsChanged: EventEmitter<void> = new EventEmitter<void>()
   public readonly onEmailsChanged: Event<void> = this._onEmailsChanged.event
+  private smtpConnectionManager: SmtpConnectionManager
 
   constructor(private context: ExtensionContext) {
     this.emailStorageManager = new EmailStorageManager(context)
     let runServerOnStartup = getConfig('runServerOnStartup') as boolean
+
+    this.smtpConnectionManager = new SmtpConnectionManager(
+      getConfig('smtpServerPort') as number
+    )
+    this.emailStorageManager.watchEmailSummaries((emails) => {
+      this.emails = emails
+      this._onEmailsChanged.fire()
+    })
 
     this.setServerState(runServerOnStartup)
     if (runServerOnStartup) {
@@ -99,9 +109,20 @@ export class EmailService {
       )
     })
 
-    this.server.on('error', (err) => {
-      console.error('Error starting SMTP server:', err)
-      window.showErrorMessage('Failed to start email server.')
+    this.server.on('error', async () => {
+      console.log('Trying to connect to the SMTP server')
+      try {
+        await this.smtpConnectionManager.connectToSmtpServer()
+      } catch (error) {
+        this.setServerState(false)
+        if (error instanceof Error) {
+          window.showErrorMessage(error.message)
+        } else {
+          window.showErrorMessage(
+            'An unknown error occurred while connecting to the SMTP server'
+          )
+        }
+      }
     })
   }
 
@@ -118,6 +139,7 @@ export class EmailService {
       })
       this.server = null
     }
+    await this.smtpConnectionManager.closeConnection()
   }
 
   public getEmailSummaries(): { label: string; email: EmailSummary }[] {

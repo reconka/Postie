@@ -20,7 +20,7 @@ const extensionConfig = {
   format: 'cjs',
   entryPoints: ['./src/extension.ts'],
   outfile: './out/extension.js',
-  external: ['vscode', 'canvas', 'smtp-server'],
+  external: ['vscode', 'canvas'],
 }
 
 // Config for webview source code (to be run in a web-based context)
