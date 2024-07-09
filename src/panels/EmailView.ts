@@ -12,6 +12,7 @@ import { Email } from '../types/Email'
 import { openInNewEditor } from './utilities/openInNewEditor'
 import { createTextField, convertStringToBase64DataUrl } from './utilities'
 import { createAttachmentButton } from './utilities/'
+import { getConfig } from '../utilities/getConfig'
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -136,11 +137,11 @@ export class EmailView {
             <vscode-button id="show-more">Show More</vscode-button>
           </div>
           <vscode-divider class="m-top" role="separator"></vscode-divider>
-          <vscode-panels>
-            <vscode-panel-tab id="mobile-view">Mobile View</vscode-panel-tab>
-            <vscode-panel-tab id="tablet-view">Tablet View</vscode-panel-tab>
-            <vscode-panel-tab id="desktop-view">Desktop View</vscode-panel-tab>
-            <vscode-panel-tab id="textOnly-view">Text Only</vscode-panel-tab>
+          <vscode-panels activeid="${getConfig('defaultEmailView')}">
+            <vscode-panel-tab id="mobile">Mobile View</vscode-panel-tab>
+            <vscode-panel-tab id="tablet">Tablet View</vscode-panel-tab>
+            <vscode-panel-tab id="desktop">Desktop View</vscode-panel-tab>
+            <vscode-panel-tab id="textOnly">Text Only</vscode-panel-tab>
             <vscode-panel-view id="view-mobile">
                 <div class="container--mobile">
                   <iframe class="full-width full-height" src="${emailDataUrl}"></iframe>

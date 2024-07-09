@@ -7,7 +7,7 @@
 [![TypeScript Version](https://img.shields.io/badge/TypeScript-%5E4.8.4-blue.svg?style=flat-square)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html)
 [![jest](https://img.shields.io/badge/tested_with-jest-%23994499.svg?style=flat-square)](https://jestjs.io/)
 [![ESLint](https://img.shields.io/badge/linted_with-eslint-%234B32C3.svg?style=flat-square)](https://eslint.org/)
-[![Version](https://img.shields.io/badge/version-0.0.66-orange.svg?style=flat-square)](https://github.com/reconka/postie)
+[![Version](https://img.shields.io/badge/version-0.6.9-orange.svg?style=flat-square)](https://github.com/Zoltan.Birner/postie)
 [![CI](https://github.com/reconka/Postie/actions/workflows/ci.yml/badge.svg)](https://github.com/reconka/Postie/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7933f74fa7e41008a8485f014fb562c)](https://app.codacy.com/gh/reconka/Postie/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
