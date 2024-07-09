@@ -8,6 +8,7 @@ export interface Config {
   smtpPassword: string
   showNewEmailNotification: boolean
   maxStoredEmailsCount: number
+  defaultEmailView: 'desktop' | 'tablet' | 'mobile' | 'text-only'
 }
 
 export function getConfig<K extends keyof Config>(key: K): Config[K] {

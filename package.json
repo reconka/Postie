@@ -104,10 +104,27 @@
           "default": "postie",
           "description": "SMTP server password"
         },
+        "postie.allowExternalMails": {
+          "type": "boolean",
+          "default": false,
+          "description": "Allow external emails to be received",
+          "comment": "This is useful for testing emails sent from external sources"
+        },
         "postie.showNewEmailNotification": {
           "type": "boolean",
           "default": true,
           "description": "Show notification when new email arrives"
+        },
+        "postie.defaultEmailView": {
+          "type": "string",
+          "default": "desktop",
+          "enum": [
+            "desktop",
+            "tablet",
+            "mobile",
+            "text-only"
+          ],
+          "description": "Default email view"
         },
         "postie.runServerOnStartup": {
           "type": "boolean",
@@ -123,12 +140,6 @@
           "type": "number",
           "default": 1048576,
           "description": "Maximum email size in bytes default is 1MB"
-        },
-        "postie.allowExternalMails": {
-          "type": "boolean",
-          "default": false,
-          "description": "Allow external emails to be received",
-          "comment": "This is useful for testing emails sent from external sources"
         }
       }
     },
