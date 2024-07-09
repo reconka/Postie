@@ -17,6 +17,12 @@ export class EmailStorageManager {
     this.initializeStorageIfAbsent()
   }
 
+  public watchEmailSummaries(callback: (emails: EmailSummary[]) => void) {
+    fs.watchFile(this.emailSummariesPath, () => {
+      callback(this.getEmailSummaries())
+    })
+  }
+
   public getEmailSummaries(): EmailSummary[] {
     try {
       if (fs.existsSync(this.emailSummariesPath)) {
