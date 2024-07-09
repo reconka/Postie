@@ -9,24 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-
       - name: Install dependencies
         run: npm install
-
       - name: Run lint
         run: npm run lint
-
       - name: Run tests
         run: npm test
-
       - name: Build
         run: npm run compile
 
@@ -36,29 +30,39 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org/'
-
       - name: Install dependencies
         run: npm install
-
       - name: Audit dependencies
         run: npm audit
-
       - name: Install VSCE
         run: npm install -g vsce
-
       - name: Package Extension
         run: vsce package
-
       - name: Publish Extension
         run: vsce publish -p ${{ secrets.AZURE_DEVOPS_PAT }}
         env:
           AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+      - name: Extract version
+        id: package_version
+        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+      - name: Create Tag
+        run: git tag v${{ steps.package_version.outputs.VERSION }}
+      - name: Push Tag
+        run: git push origin v${{ steps.package_version.outputs.VERSION }}
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.package_version.outputs.VERSION }}
+          release_name: Release ${{ steps.package_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
 
   pre-release:
     needs: build
@@ -66,26 +70,36 @@ jobs:
     if: github.ref == 'refs/heads/development'
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org/'
-
       - name: Install dependencies
         run: npm install
-
       - name: Audit dependencies
         run: npm audit
-
       - name: Install VSCE
         run: npm install -g vsce
-
       - name: Package Extension (Pre-release)
         run: vsce package --pre-release
-
       - name: Publish Extension (Pre-release)
         run: vsce publish --pre-release -p ${{ secrets.AZURE_DEVOPS_PAT }}
         env:
           AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+      - name: Extract version
+        id: package_version
+        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+      - name: Create Tag (Pre-release)
+        run: git tag v${{ steps.package_version.outputs.VERSION }}-pre
+      - name: Push Tag (Pre-release)
+        run: git push origin v${{ steps.package_version.outputs.VERSION }}-pre
+      - name: Create Release (Pre-release)
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.package_version.outputs.VERSION }}-pre
+          release_name: Pre-release ${{ steps.package_version.outputs.VERSION }}
+          draft: false
+          prerelease: true
