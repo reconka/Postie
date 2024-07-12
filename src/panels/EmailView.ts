@@ -10,9 +10,9 @@ import { getUri } from '../utilities/getUri'
 import { getNonce } from '../utilities/getNonce'
 import { Email } from '../types/Email'
 import { openInNewEditor } from './utilities/openInNewEditor'
-import { createTextField, convertStringToBase64DataUrl } from './utilities'
-import { createAttachmentButton } from './utilities/'
+import { createTextField, createAttachmentButton } from './utilities/uiElements'
 import { getConfig } from '../utilities/getConfig'
+import { formatStringToBase64DataUrl } from '../utilities/formatters'
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -99,7 +99,7 @@ export class EmailView {
 
     const attachments = createAttachmentButton(email.attachments)
 
-    const emailDataUrl = convertStringToBase64DataUrl(email.html)
+    const emailDataUrl = formatStringToBase64DataUrl(email.html)
     const codiconsUri = getUri(webview, extensionUri, ['out', 'codicon.css'])
     const myStylesUri = getUri(webview, extensionUri, ['out', 'main.css'])
 
@@ -143,22 +143,22 @@ export class EmailView {
             <vscode-panel-tab id="desktop">Desktop View</vscode-panel-tab>
             <vscode-panel-tab id="textOnly">Text Only</vscode-panel-tab>
             <vscode-panel-view id="view-mobile">
-                <div class="container--mobile">
+                <div class="container--mobile background--light">
                   <iframe class="full-width full-height" src="${emailDataUrl}"></iframe>
                 </div>
             </vscode-panel-view>
             <vscode-panel-view id="view-tablet">
-                <div class="container--tablet ">
+                <div class="container--tablet background--light">
                   <iframe class="full-width full-height" src="${emailDataUrl}" sandbox></iframe>
                 </div>
             </vscode-panel-view>
-            <vscode-panel-view id="view-desktop">
+            <vscode-panel-view id="view-desktop background--light">
                 <div class="container--desktop">
                   <iframe class="full-width full-height" src="${emailDataUrl}"></iframe>
                 </div>
             </vscode-panel-view>
             <vscode-panel-view id="text-only-view">
-                <div class="container--desktop">
+                <div class>
                   ${email.text}
                 </div>
             </vscode-panel-view>

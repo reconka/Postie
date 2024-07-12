@@ -6,8 +6,9 @@
 [![VS Code Version](https://img.shields.io/badge/VS%20Code-%5E1.75.0-blue.svg?style=flat-square)](https://code.visualstudio.com/updates/v1_75)
 [![TypeScript Version](https://img.shields.io/badge/TypeScript-%5E4.8.4-blue.svg?style=flat-square)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html)
 [![jest](https://img.shields.io/badge/tested_with-jest-%23994499.svg?style=flat-square)](https://jestjs.io/)
+[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Postie-brightgreen.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=Postie.postie)
 [![ESLint](https://img.shields.io/badge/linted_with-eslint-%234B32C3.svg?style=flat-square)](https://eslint.org/)
-[![Version](https://img.shields.io/badge/version-0.6.9-orange.svg?style=flat-square)](https://github.com/Zoltan.Birner/postie)
+[![Version](https://img.shields.io/badge/version-0.6.11-orange.svg?style=flat-square)](https://github.com/Zoltan.Birner/postie)
 [![CI](https://github.com/reconka/Postie/actions/workflows/ci.yml/badge.svg)](https://github.com/reconka/Postie/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7933f74fa7e41008a8485f014fb562c)](https://app.codacy.com/gh/reconka/Postie/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
@@ -68,6 +69,10 @@ You can modify these settings to fit your needs. For example, to change the SMTP
   "postie.maxEmailSize": 2097152
 }
 ```
+
+## Gotchas
+
+- **_Outlook not rendering EML files correctly on Windows:_** CR LF EML Export Issue: If you encounter issues with CR LF line endings in EML exports, use the "Change File Encoding" feature in Visual Studio Code. You can find this option at the bottom of the VS Code window. Change the encoding to "Windows (CRLF)" to fix the issue.
 
 ## Contributing
 

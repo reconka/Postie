@@ -5,6 +5,11 @@
     "type": "git",
     "url": "https://github.com/reconka/Postie.git"
   },
+  "bugs": {
+    "url": "https://github.com/reconka/Postie/issues"
+  },
+  "homepage": "https://github.com/reconka/Postie",
+  "pricing": "Free",
   "keywords": [
     "email",
     "server",
@@ -22,7 +27,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "0.6.9",
+  "version": "0.6.11",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
