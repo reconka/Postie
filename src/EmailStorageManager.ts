@@ -26,7 +26,10 @@ export class EmailStorageManager {
   public getEmailSummaries(): EmailSummary[] {
     try {
       if (fs.existsSync(this.emailSummariesPath)) {
-        const data = fs.readFileSync(this.emailSummariesPath, 'utf8')
+        const data = fs.readFileSync(this.emailSummariesPath, {
+          encoding: 'utf8',
+          flag: 'a+',
+        })
         let emails: Array<EmailSummary> = JSON.parse(data)
         return emails
       }
