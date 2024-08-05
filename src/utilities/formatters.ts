@@ -13,10 +13,10 @@ export function formatAddresses(
     return ''
   }
   const addressList = Array.isArray(addresses) ? addresses : [addresses]
-  return addressList.map((addr) => sanatize(addr.text)).join(', ')
+  return addressList.map((addr) => sanitize(addr.text)).join(', ')
 }
 
-export function sanatize(element: string): string {
+export function sanitize(element: string): string {
   return sanitizeHtml(element)
 }
 

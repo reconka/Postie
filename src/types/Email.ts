@@ -1,3 +1,5 @@
+import type { Uri } from 'vscode'
+
 export interface Email {
   id: string
   receivedDateTime: string
@@ -24,8 +26,6 @@ export interface EmailSummary {
 export interface Attachment {
   contentType: string
   fileName: string
-  contentDisposition: string
-  generatedFileName: string
-  contentId: string
+  fileUrl: Uri | null
   length: number
 }
