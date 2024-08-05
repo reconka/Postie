@@ -17,6 +17,12 @@ function main() {
     .getElementById('open-source')
     ?.addEventListener('click', openSourceCode)
 
+  document.querySelectorAll('.open-attachment').forEach((element) => {
+    element.addEventListener('click', function () {
+      openAttachment(this.getAttribute('data-attachment'))
+    })
+  })
+
   function showHideElement() {
     const detailedInformation = document.querySelector('#more-info')
     if (detailedInformation) {
@@ -29,6 +35,13 @@ function main() {
   function openSourceCode() {
     vscode.postMessage({
       command: 'open-source',
+    })
+  }
+
+  function openAttachment(fileUrl: string) {
+    vscode.postMessage({
+      command: 'open-attachment',
+      fileUrl,
     })
   }
 

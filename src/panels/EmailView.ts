@@ -10,10 +10,12 @@ import { getUri } from '../utilities/getUri'
 import { getNonce } from '../utilities/getNonce'
 import { Email } from '../types/Email'
 import { openInNewEditor } from './utilities/openInNewEditor'
-import { createTextField, createAttachmentButton } from './utilities/uiElements'
+import {
+  createTextField,
+  createAttachmentButtons,
+} from './utilities/uiElements'
 import { getConfig } from '../utilities/getConfig'
 import { formatStringToBase64DataUrl } from '../utilities/formatters'
-
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
  *
@@ -97,7 +99,7 @@ export class EmailView {
     const nonce = getNonce()
     this.email = email
 
-    const attachments = createAttachmentButton(email.attachments)
+    const attachments = createAttachmentButtons(email.attachments)
 
     const emailDataUrl = formatStringToBase64DataUrl(email.html)
     const codiconsUri = getUri(webview, extensionUri, ['out', 'codicon.css'])
@@ -158,7 +160,7 @@ export class EmailView {
                 </div>
             </vscode-panel-view>
             <vscode-panel-view id="text-only-view">
-                <div class>
+                <div>
                   ${email.text}
                 </div>
             </vscode-panel-view>
@@ -182,6 +184,12 @@ export class EmailView {
             openInNewEditor(`${this.email.id}.eml`, this.email.source).catch(
               (_error) => {}
             )
+            break
+
+          case 'open-attachment':
+            let fileName: string =
+              message.fileUrl.split('/').pop() ?? 'attachment'
+            openInNewEditor(fileName, Uri.parse(message.fileUrl))
             break
 
           case 'open-source':

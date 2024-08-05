@@ -9,7 +9,7 @@ import type { Email, EmailSummary } from './types/Email'
 import { EmailStorageManager } from './EmailStorageManager'
 import { getConfig } from './utilities/getConfig'
 import { formatDateToTime, formatAddresses } from './utilities/formatters'
-import { simpleParser, ParsedMail } from 'mailparser'
+import { simpleParser, ParsedMail, Attachment } from 'mailparser'
 import { SmtpConnectionManager } from './SMTPConnectionManager'
 
 export class EmailService {
@@ -195,13 +195,14 @@ export class EmailService {
         text: parsedEmail.text || '',
         html: parsedEmail.html || '',
         source: rawEmail,
-        attachments: parsedEmail.attachments.map((att) => ({
-          contentType: att.contentType,
-          fileName: att.filename || '',
-          contentDisposition: att.contentDisposition || '',
-          generatedFileName: att.filename || '',
-          contentId: att.contentId || '',
-          length: att.size || 0,
+        attachments: parsedEmail.attachments.map((attachment: Attachment) => ({
+          contentType: attachment.contentType,
+          fileUrl: this.emailStorageManager.storeAttachments(
+            parsedEmail.messageId || Date.now().toString(),
+            attachment
+          ),
+          fileName: attachment.filename || '',
+          length: attachment.size || 0,
         })),
       }
 

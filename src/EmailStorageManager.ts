@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as vscode from 'vscode'
 import { Email, EmailSummary } from './types/Email'
 import { getConfig } from './utilities/getConfig'
+import { Attachment } from 'mailparser'
 
 export class EmailStorageManager {
   private storageUri: vscode.Uri
@@ -66,11 +67,19 @@ export class EmailStorageManager {
 
   public removeEmailFile(emailId: string) {
     const emailFilePath = path.join(this.storageUri.fsPath, `${emailId}.json`)
+    const attachmentDirectoryPath = path.join(this.storageUri.fsPath, emailId)
     fs.unlink(emailFilePath, (err) => {
       if (err) {
         console.error('Error deleting email from disk:', err)
       }
     })
+
+    if (fs.existsSync(attachmentDirectoryPath)) {
+      fs.rmSync(path.join(attachmentDirectoryPath), {
+        recursive: true,
+        force: true,
+      })
+    }
   }
 
   public clearEmailStorage(): void {
@@ -82,6 +91,13 @@ export class EmailStorageManager {
         console.error('Error reading email storage directory:', err)
       } else {
         files.forEach((file) => {
+          if (!file.includes('.')) {
+            fs.rmSync(path.join(this.storageUri.fsPath, file), {
+              recursive: true,
+            })
+            return
+          }
+
           fs.unlink(path.join(this.storageUri.fsPath, file), (err) => {
             if (err) {
               console.error('Error deleting email file:', err)
@@ -90,6 +106,31 @@ export class EmailStorageManager {
         })
       }
     })
+  }
+
+  public storeAttachments(
+    folderName: string,
+    attachment: Attachment
+  ): vscode.Uri | null {
+    const { filename, content } = attachment
+    if (!filename) {
+      return null
+    }
+    try {
+      const dirPath = path.join(this.storageUri.fsPath, folderName)
+      const filePath = path.join(dirPath, filename)
+
+      if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true })
+      }
+
+      fs.writeFileSync(filePath, content)
+      return vscode.Uri.file(filePath)
+    } catch (error) {
+      const errorMessage = (error as Error).message
+      vscode.window.showErrorMessage(`Error creating file: ${errorMessage}`)
+    }
+    return null
   }
 
   private initializeStorageIfAbsent() {
