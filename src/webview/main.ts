@@ -23,6 +23,14 @@ function main() {
     })
   })
 
+  const compatibilityGrid = document?.getElementById('compatibility-grid')
+  if (compatibilityGrid) {
+    // @ts-ignore next line
+    compatibilityGrid.rowsData = JSON.parse(
+      compatibilityGrid.dataset.rowdata || '[]'
+    )
+  }
+
   function showHideElement() {
     const detailedInformation = document.querySelector('#more-info')
     if (detailedInformation) {

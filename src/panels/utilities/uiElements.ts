@@ -26,3 +26,9 @@ export function createAttachmentButtons(attachment: Attachment[]): string {
     )
     .join('')
 }
+
+export function createBadge(count?: number): string {
+  return count
+    ? `<vscode-badge appearance="secondary">${count}</vscode-badge>`
+    : ''
+}

@@ -27,7 +27,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "0.6.15",
+  "version": "0.6.16",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
@@ -119,6 +119,16 @@
           "type": "boolean",
           "default": true,
           "description": "Show notification when new email arrives"
+        },
+        "postie.compatibilityClients": {
+          "type": "array",
+          "default": [
+            "apple-mail.ios",
+            "gmail.ios",
+            "gmail.android",
+            "outlook.windows"
+          ],
+          "markdownDescription": "Email clients to test compatibility. The default is set to test compatibility with Apple Mail, Gmail, and Outlook. Do you want to set a different client? [Check the list of supported clients](https://www.npmjs.com/package/@jsx-email/doiuse-email#emailclients)"
         },
         "postie.defaultEmailView": {
           "type": "string",
@@ -259,6 +269,7 @@
     "@vscode/codicons": "^0.0.36",
     "@vscode/webview-ui-toolkit": "^1.2.2",
     "date-fns": "^3.6.0",
+    "doiuse-email": "^0.4.1",
     "esbuild-plugin-copy": "^2.1.1",
     "mailparser": "^3.7.1",
     "nodemailer": "^6.9.14",

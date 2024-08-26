@@ -29,3 +29,9 @@ export interface Attachment {
   fileUrl: Uri | null
   length: number
 }
+
+export interface CompatibilityResult {
+  ReportType: string
+  Result: string
+  Client: string
+}

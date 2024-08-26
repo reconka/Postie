@@ -4,6 +4,7 @@ export interface Config {
   maxEmailSize: number
   smtpServerPort: number
   allowExternalMails: boolean
+  compatibilityClients: string[]
   smtpUsername: string
   smtpPassword: string
   showNewEmailNotification: boolean
