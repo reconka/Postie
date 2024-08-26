@@ -10,9 +10,14 @@ import { getUri } from '../utilities/getUri'
 import { getNonce } from '../utilities/getNonce'
 import { Email } from '../types/Email'
 import { openInNewEditor } from './utilities/openInNewEditor'
-import { createTextField, createAttachmentButton } from './utilities/uiElements'
+import {
+  createTextField,
+  createAttachmentButton,
+  createBadge,
+} from './utilities/uiElements'
 import { getConfig } from '../utilities/getConfig'
 import { formatStringToBase64DataUrl } from '../utilities/formatters'
+import { EmailCompatibilityService } from '../EmailCompatibilityService'
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -97,6 +102,11 @@ export class EmailView {
     const nonce = getNonce()
     this.email = email
 
+    const compatibilityResult = new EmailCompatibilityService(
+      email.html,
+      getConfig('compatibilityClients')
+    )
+
     const attachments = createAttachmentButton(email.attachments)
 
     const emailDataUrl = formatStringToBase64DataUrl(email.html)
@@ -133,7 +143,7 @@ export class EmailView {
           </div>
           <div class="buttons-container flex m-top">
             <vscode-button id="open-source" appearance="secondary"><span slot="start" class="codicon codicon-file-code"></span> Source </vscode-button>
-            <vscode-button id="open-eml" appearance="secondary"><span slot="start" class="codicon codicon-telescope"></span> Open eml</vscode-button>
+            <vscode-button id="open-eml" appearance="secondary"><span slot="start" class="codicon codicon-telescope"></span> Open Eml</vscode-button>
             <vscode-button id="show-more">Show More</vscode-button>
           </div>
           <vscode-divider class="m-top" role="separator"></vscode-divider>
@@ -142,6 +152,9 @@ export class EmailView {
             <vscode-panel-tab id="tablet">Tablet View</vscode-panel-tab>
             <vscode-panel-tab id="desktop">Desktop View</vscode-panel-tab>
             <vscode-panel-tab id="textOnly">Text Only</vscode-panel-tab>
+            <vscode-panel-tab id="compatibility">Email Client Compatibility
+            ${createBadge(compatibilityResult.processor?.errors?.length)}
+            </vscode-panel-tab>
             <vscode-panel-view id="view-mobile">
                 <div class="container--mobile background--light">
                   <iframe class="full-width full-height" src="${emailDataUrl}"></iframe>
@@ -160,6 +173,11 @@ export class EmailView {
             <vscode-panel-view id="text-only-view">
                 <div class>
                   ${email.text}
+                </div>
+            </vscode-panel-view>
+            <vscode-panel-view id="compatibility-view">
+                <div>
+                  <vscode-data-grid data-rowdata='${compatibilityResult.formatToRowColumnData()}' id="compatibility-grid" aria-label="Compatibility result" row-type="sticky-header"></vscode-data-grid>
                 </div>
             </vscode-panel-view>
           </vscode-panels>
