@@ -27,7 +27,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "0.6.16",
+  "version": "0.6.17",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
