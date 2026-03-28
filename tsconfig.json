@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "types": ["jest", "node"],
     "allowSyntheticDefaultImports": true,
     "module": "commonjs",
     "target": "ES2020",

@@ -3,16 +3,20 @@
 # Postie: Development Email SMTP Server for VS Code
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![VS Code Version](https://img.shields.io/badge/VS%20Code-%5E1.75.0-blue.svg?style=flat-square)](https://code.visualstudio.com/updates/v1_75)
-[![TypeScript Version](https://img.shields.io/badge/TypeScript-%5E4.8.4-blue.svg?style=flat-square)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html)
-[![jest](https://img.shields.io/badge/tested_with-jest-%23994499.svg?style=flat-square)](https://jestjs.io/)
+[![VS Code Version](https://img.shields.io/badge/VS%20Code-%5E1.102.0-blue.svg?style=flat-square)](https://code.visualstudio.com)
+[![Cursor](https://img.shields.io/badge/Cursor-Supported-1f6feb.svg?style=flat-square)](https://www.cursor.com/en)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933.svg?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript Version](https://img.shields.io/badge/TypeScript-%5E5.9.3-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
+[![Jest](https://img.shields.io/badge/tested_with-jest_30-%23994499.svg?style=flat-square)](https://jestjs.io/)
 [![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Postie-brightgreen.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=Postie.postie)
-[![ESLint](https://img.shields.io/badge/linted_with-eslint-%234B32C3.svg?style=flat-square)](https://eslint.org/)
-[![Version](https://img.shields.io/badge/version-1.0.5-orange.svg?style=flat-square)](https://github.com/Zoltan.Birner/postie)
+[![ESLint](https://img.shields.io/badge/linted_with-eslint_9-%234B32C3.svg?style=flat-square)](https://eslint.org/)
+[![Version](https://img.shields.io/badge/version-1.1.0-orange.svg?style=flat-square)](https://github.com/reconka/Postie)
 [![CI](https://github.com/reconka/Postie/actions/workflows/ci.yml/badge.svg)](https://github.com/reconka/Postie/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7933f74fa7e41008a8485f014fb562c)](https://app.codacy.com/gh/reconka/Postie/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Postie is a Visual Studio Code extension that provides a development email SMTP server using Nodemailer smtp-server. It allows developers to catch and inspect emails sent by their applications during development, all within the VS Code environment.
+
+Postie also supports Cursor for MCP tooling, so you can use the same email inspection and screenshot workflows in Cursor after setup.
 
 **Note:** This extension is designed for development purposes only. Do not use it in production environments.
 
@@ -22,6 +26,9 @@ Postie is a Visual Studio Code extension that provides a development email SMTP 
 - Export emails as .eml files
 - Open email source in your editor
 - HTML content preview with responsive design modes (Mobile/Tablet/Desktop)
+- MCP server integration for VS Code chat/tools: list emails, fetch details, run compatibility checks, and capture screenshots
+- Screenshot generation via Playwright (Chromium) with predefined device presets (mobile/tablet/desktop)
+- MCP screenshot resources exposed as postie://screenshots/<emailId>/<preset>.png
 
 ## Installation
 
@@ -48,6 +55,8 @@ When previewing email content, links can be opened in your default web browser b
 
 For more information, see the [Postie Integration Guide](https://github.com/reconka/Postie/blob/main/src/media/integration.md).
 
+For MCP and VS Code chat integration, see the bundled `MCP_VSCODE_GUIDE.md`. Postie also exposes an optional MCP server that provides tools like `list_emails`, `get_email`, `check_email_compatibility`, and `capture_email_screenshot` when running in a VS Code build that exposes the MCP APIs.
+
 ## Configuration
 
 To customize Postie for your development environment, you can adjust the following settings in your VS Code settings.json file:
@@ -70,9 +79,27 @@ You can modify these settings to fit your needs. For example, to change the SMTP
 }
 ```
 
+To enable MCP screenshot presets and compatibility clients, extend your settings like this:
+
+```json
+{
+  "postie.smtpServerPort": 587,
+  "postie.maxEmailSize": 2097152,
+  "postie.screenshotPresets": ["iphone-14-pro-max", "pixel-7", "ipad-air"],
+  "postie.compatibilityClients": [
+    "apple-mail.ios",
+    "gmail.ios",
+    "outlook.windows"
+  ]
+}
+```
+
 ## Gotchas
 
 - **_Outlook not rendering EML files correctly on Windows:_** CR LF EML Export Issue: If you encounter issues with CR LF line endings in EML exports, use the "Change File Encoding" feature in Visual Studio Code. You can find this option at the bottom of the VS Code window. Change the encoding to "Windows (CRLF)" to fix the issue.
+
+- **MCP server availability:** The MCP features require a VS Code build that exposes the MCP APIs (Postie checks for this at runtime). If your VS Code build does not expose the MCP API, Postie will warn and MCP tools/resources will not be registered.
+- **Screenshots require Playwright/Chromium:** If you plan to use `capture_email_screenshot`, install Playwright's Chromium runtime (`npx playwright install chromium`) and run on a platform that supports Playwright.
 
 ## Contributing
 
@@ -94,6 +121,18 @@ To set up a development environment for contributing to the Postie extension, fo
    npm install
    ```
 
+   ### Prerequisites
+
+   - Node.js 18 or newer (some newly added dependencies require Node 18+)
+   - npm (or yarn)
+   - Playwright (only required if you plan to use screenshot capture features)
+
+   Install Playwright's Chromium runtime when you need to capture screenshots:
+
+   ```bash
+   npx playwright install chromium
+   ```
+
 3. **Open in VS Code**
 
    Open the cloned Postie directory in Visual Studio Code:
@@ -105,6 +144,8 @@ To set up a development environment for contributing to the Postie extension, fo
 4. **Run the Extension in Development Mode**
 
    In VS Code, press `F5` to open a new VS Code window with the Postie extension running in development mode. This allows you to test your changes in a real-world scenario.
+
+   Note: the build script (`esbuild.js`) now includes an MCP server bundle (`out/mcpServer.js`). Use `npm run watch` to watch and rebuild the extension, webview, and MCP server during development.
 
 5. **Making Changes**
 

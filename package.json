@@ -27,17 +27,23 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "1.0.5",
+  "version": "1.1.0",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
   ],
   "publisher": "Postie",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.102.0"
   },
   "main": "out/extension.js",
   "contributes": {
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "postie.mcp-server",
+        "label": "Postie MCP Server"
+      }
+    ],
     "walkthroughs": [
       {
         "id": "postie-getting-started",
@@ -89,6 +95,53 @@
             }
           }
         ]
+      },
+      {
+        "id": "postie-mcp-guide",
+        "title": "Use Postie MCP in VS Code",
+        "description": "Connect VS Code chat tools to Postie and inspect emails by id, screenshots, and compatibility checks.",
+        "steps": [
+          {
+            "id": "postie-mcp-prerequisites",
+            "title": "Check Prerequisites",
+            "description": "Use a VS Code build with MCP support, install Postie, and make sure at least one email is captured.",
+            "media": {
+              "markdown": "/MCP_VSCODE_GUIDE.md"
+            }
+          },
+          {
+            "id": "postie-mcp-enable-server",
+            "title": "Enable Postie MCP Server",
+            "description": "Open the Command Palette and run `MCP: List Servers`, then enable `Postie MCP Server`.",
+            "media": {
+              "markdown": "/MCP_VSCODE_GUIDE.md"
+            }
+          },
+          {
+            "id": "postie-mcp-discover-tools",
+            "title": "Discover Tools",
+            "description": "In VS Code chat tool configuration, enable Postie tools including `list_emails`, `get_email`, `capture_email_screenshot`, and compatibility tools.",
+            "media": {
+              "markdown": "/MCP_VSCODE_GUIDE.md"
+            }
+          },
+          {
+            "id": "postie-mcp-debug-workflow",
+            "title": "Run Debug Workflow",
+            "description": "Ask chat to list emails, copy an `emailId`, inspect details, run compatibility checks, then generate screenshots from `capture_email_screenshot`.",
+            "media": {
+              "markdown": "/MCP_VSCODE_GUIDE.md"
+            }
+          },
+          {
+            "id": "postie-mcp-settings",
+            "title": "Tune MCP Settings",
+            "description": "Configure [Postie settings](command:workbench.action.openSettings?%22postie%22) like `postie.compatibilityClients` and `postie.screenshotPresets` to control MCP defaults.",
+            "media": {
+              "markdown": "/MCP_VSCODE_GUIDE.md"
+            }
+          }
+        ]
       }
     ],
     "configuration": {
@@ -122,6 +175,44 @@
         },
         "postie.compatibilityClients": {
           "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "apple-mail.macos",
+              "apple-mail.ios",
+              "gmail.desktop-webmail",
+              "gmail.ios",
+              "gmail.android",
+              "gmail.mobile-webmail",
+              "orange.desktop-webmail",
+              "orange.ios",
+              "orange.android",
+              "outlook.windows",
+              "outlook.windows-mail",
+              "outlook.macos",
+              "outlook.ios",
+              "outlook.android",
+              "yahoo.desktop-webmail",
+              "yahoo.ios",
+              "yahoo.android",
+              "aol.desktop-webmail",
+              "aol.ios",
+              "aol.android",
+              "samsung-email.android",
+              "sfr.desktop-webmail",
+              "sfr.ios",
+              "sfr.android",
+              "thunderbird.macos",
+              "protonmail.desktop-webmail",
+              "protonmail.ios",
+              "protonmail.android",
+              "hey.desktop-webmail",
+              "mail-ru.desktop-webmail",
+              "fastmail.desktop-webmail",
+              "laposte.desktop-webmail"
+            ]
+          },
+          "uniqueItems": true,
           "default": [
             "apple-mail.ios",
             "gmail.ios",
@@ -129,6 +220,37 @@
             "outlook.windows"
           ],
           "markdownDescription": "Email clients to test compatibility. The default is set to test compatibility with Apple Mail, Gmail, and Outlook. Do you want to set a different client? [Check the list of supported clients](https://www.npmjs.com/package/@jsx-email/doiuse-email#emailclients)"
+        },
+        "postie.screenshotPresets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "iphone-se",
+              "iphone-xr",
+              "iphone-12-pro",
+              "iphone-14-pro-max",
+              "pixel-7",
+              "samsung-galaxy-s8-plus",
+              "samsung-galaxy-s20-ultra",
+              "samsung-galaxy-a51-71",
+              "ipad-mini",
+              "ipad-air",
+              "ipad-pro"
+            ]
+          },
+          "uniqueItems": true,
+          "default": [
+            "iphone-14-pro-max",
+            "pixel-7",
+            "ipad-air"
+          ],
+          "markdownDescription": "Allowed screenshot preset IDs for MCP screenshot capture. Legacy aliases `desktop`, `tablet`, and `mobile` remain supported for compatibility."
+        },
+        "postie.mcpStoragePath": {
+          "type": "string",
+          "default": "",
+          "description": "Override Postie MCP storage path. If unset, Postie will auto-discover and prompt when multiple folders are found."
         },
         "postie.defaultEmailView": {
           "type": "string",
@@ -161,7 +283,8 @@
     "viewsWelcome": [
       {
         "view": "incomingEmails",
-        "contents": "Welcome to Postie! Click the play button to start the server."
+        "contents": "Welcome to Postie! Click the play button to start the server.",
+        "when": "!postie.isRunning"
       }
     ],
     "viewsContainers": {
@@ -210,7 +333,7 @@
           "command": "postie.deleteSelectedEmail",
           "group": "inline",
           "icon": "$(trash)",
-          "when": "view == incomingEmails"
+          "when": "view == incomingEmails && viewItem == email"
         }
       ]
     },
@@ -235,6 +358,21 @@
         "command": "postie.restartServer",
         "title": "Postie: Restart Email Server",
         "icon": "$(play)"
+      },
+      {
+        "command": "postie.setupMcpForEditors",
+        "title": "Postie: Setup MCP for Other Editors",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "postie.setupMcpForCodex",
+        "title": "Postie: Setup MCP for Codex",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "postie.setupMcpForClaudeCode",
+        "title": "Postie: Setup MCP for Claude Code",
+        "icon": "$(gear)"
       }
     ]
   },
@@ -247,33 +385,34 @@
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/glob": "^8.0.0",
-    "@types/jest": "^29.5.12",
-    "@types/node": "16.x",
-    "@types/sanitize-html": "^2.11.0",
-    "@types/vscode": "^1.74.0",
-    "@types/vscode-webview": "^1.57.0",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
-    "esbuild": "^0.25.0",
-    "eslint": "^8.26.0",
-    "glob": "^8.0.3",
-    "jest": "^29.7.0",
-    "prettier": "^2.8.8",
-    "ts-jest": "^29.1.5",
-    "typescript": "^4.8.4"
+    "@types/jest": "^30.0.0",
+    "@types/node": "25.x",
+    "@types/sanitize-html": "^2.16.1",
+    "@types/vscode": "^1.110.0",
+    "@types/vscode-webview": "^1.57.5",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "esbuild": "^0.27.4",
+    "eslint": "^9.39.4",
+    "glob": "^13.0.6",
+    "jest": "^30.3.0",
+    "prettier": "^3.8.1",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@types/mailparser": "^3.4.4",
-    "@types/smtp-server": "^3.5.10",
-    "@vscode/codicons": "^0.0.36",
-    "@vscode/webview-ui-toolkit": "^1.2.2",
-    "date-fns": "^3.6.0",
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "@types/mailparser": "^3.4.6",
+    "@types/smtp-server": "^3.5.12",
+    "@vscode/codicons": "^0.0.45",
+    "@vscode/webview-ui-toolkit": "^1.4.0",
+    "date-fns": "^4.1.0",
     "doiuse-email": "^0.4.1",
     "esbuild-plugin-copy": "^2.1.1",
-    "mailparser": "^3.7.1",
-    "nodemailer": "^7.0.7",
-    "sanitize-html": "^2.13.0",
-    "smtp-server": "^3.13.4"
+    "mailparser": "^3.9.6",
+    "nodemailer": "^8.0.4",
+    "playwright": "^1.58.2",
+    "sanitize-html": "^2.17.2",
+    "smtp-server": "^3.18.3"
   }
 }

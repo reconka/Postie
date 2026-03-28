@@ -5,6 +5,7 @@ import {
   window,
   Uri,
   ViewColumn,
+  env,
 } from 'vscode'
 import { getUri } from '../utilities/getUri'
 import { getNonce } from '../utilities/getNonce'
@@ -144,6 +145,7 @@ export class EmailView {
           <div class="buttons-container flex m-top">
             <vscode-button id="open-source" appearance="secondary"><span slot="start" class="codicon codicon-file-code"></span> Source </vscode-button>
             <vscode-button id="open-eml" appearance="secondary"><span slot="start" class="codicon codicon-telescope"></span> Open Eml</vscode-button>
+            <vscode-button id="copy-id" appearance="secondary"><span slot="start" class="codicon codicon-copy"></span> Copy Id</vscode-button>
             <vscode-button id="show-more">Show More</vscode-button>
           </div>
           <vscode-divider class="m-top" role="separator"></vscode-divider>
@@ -214,6 +216,13 @@ export class EmailView {
               this.email.html
             ).catch((_error) => {})
 
+            break
+
+          case 'copy-id':
+            const normalizedId = JSON.stringify(this.email.id)
+            env.clipboard.writeText(normalizedId).then(() => {
+              window.showInformationMessage('Email ID copied to clipboard')
+            })
             break
         }
       },
