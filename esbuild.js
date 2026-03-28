@@ -32,11 +32,7 @@ const mcpServerConfig = {
   entryPoints: ['./src/mcp/server.ts'],
   outfile: './out/mcpServer.js',
   external: [
-    '@modelcontextprotocol/sdk',
-    '@modelcontextprotocol/sdk/*',
     'playwright',
-    'zod',
-    'zod/*',
   ],
 }
 

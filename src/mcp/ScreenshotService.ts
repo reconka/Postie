@@ -1,4 +1,3 @@
-import { chromium } from 'playwright'
 import { FileEmailStore } from './FileEmailStore'
 import { EmailScreenshotMetadata, ScreenshotPreset } from './types'
 import {
@@ -49,6 +48,15 @@ export class ScreenshotService {
     emailId: string,
     preset: ScreenshotPreset
   ): Promise<EmailScreenshotMetadata> {
+    let chromium: typeof import('playwright').chromium
+    try {
+      ;({ chromium } = await import('playwright'))
+    } catch (error) {
+      throw new Error(
+        'Playwright is required for screenshot capture. Install it with `npm install playwright` and run `npx playwright install chromium`.'
+      )
+    }
+
     const email = this.store.getEmailFile(emailId)
     if (!email) {
       throw new Error(`Email not found: ${emailId}`)

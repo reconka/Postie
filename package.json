@@ -12,6 +12,7 @@
   "pricing": "Free",
   "keywords": [
     "email",
+    "mcp",
     "server",
     "smtp",
     "debug"
@@ -27,7 +28,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
