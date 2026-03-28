@@ -5,6 +5,7 @@ import {
   resolveScreenshotPreset,
   ScreenshotPresetConfig,
 } from '../screenshot/presetsConfig'
+import sanitizeHtml from 'sanitize-html'
 
 export function getScreenshotPresetConfig(
   preset: ScreenshotPreset
@@ -115,16 +116,31 @@ export class ScreenshotService {
 }
 
 function sanitizeHtmlForScreenshot(html: string): string {
-  const withoutScripts = html.replace(
-    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-    ''
-  )
-  const withoutEventHandlers = withoutScripts.replace(
-    /\son\w+=(".*?"|'.*?'|[^\s>]+)/gi,
-    ''
-  )
-  return withoutEventHandlers.replace(
-    /\s(href|src)\s*=\s*(["'])\s*javascript:[^"']*\2/gi,
-    ' $1="#"'
-  )
+  return sanitizeHtml(html, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+      'table',
+      'thead',
+      'tbody',
+      'tfoot',
+      'tr',
+      'td',
+      'th',
+      'colgroup',
+      'col',
+      'img',
+      'span',
+      'div',
+    ]),
+    allowedAttributes: {
+      a: ['href', 'name', 'target', 'title'],
+      img: ['src', 'alt', 'title', 'width', 'height'],
+      td: ['colspan', 'rowspan', 'align', 'valign'],
+      th: ['colspan', 'rowspan', 'align', 'valign'],
+      table: ['width', 'cellpadding', 'cellspacing', 'border', 'align'],
+      '*': ['class', 'style'],
+    },
+    allowedSchemes: ['http', 'https', 'mailto'],
+    allowProtocolRelative: true,
+    disallowedTagsMode: 'discard',
+  })
 }
