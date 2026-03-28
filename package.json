@@ -271,9 +271,9 @@
     "date-fns": "^3.6.0",
     "doiuse-email": "^0.4.1",
     "esbuild-plugin-copy": "^2.1.1",
-    "mailparser": "^3.7.1",
-    "nodemailer": "^6.9.14",
+    "mailparser": "^3.9.6",
+    "nodemailer": "^8.0.4",
     "sanitize-html": "^2.13.0",
-    "smtp-server": "^3.13.4"
+    "smtp-server": "^3.18.3"
   }
 }
