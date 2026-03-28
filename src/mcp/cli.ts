@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import * as path from 'path'
 import { spawn } from 'child_process'
 import { buildMcpConfig } from './cliConfig'
@@ -9,6 +10,16 @@ interface CliOptions {
   storagePath?: string
   compatibilityClients?: string
   screenshotPresets?: string
+}
+
+type PostieMcpEntry = {
+  env?: Record<string, string>
+}
+
+type McpConfigWithServers = {
+  mcpServers?: {
+    postie?: PostieMcpEntry
+  }
 }
 
 function parseArgs(argv: string[]): CliOptions {
@@ -105,14 +116,16 @@ function printUsage(exitCode: number): never {
     '  -h, --help                     Show help.',
   ].join('\n')
 
-  console.log(usage)
+  process.stdout.write(`${usage}\n`)
   process.exit(exitCode)
 }
 
 function getVersion(): string {
   try {
-    const pkg = require(path.join(__dirname, '..', 'package.json'))
-    return pkg.version || '1.0.0'
+    const pkgPath = path.join(__dirname, '..', 'package.json')
+    const raw = fs.readFileSync(pkgPath, 'utf8')
+    const pkg = JSON.parse(raw) as { version?: string }
+    return pkg.version ?? '1.0.0'
   } catch {
     return '1.0.0'
   }
@@ -152,7 +165,7 @@ async function main() {
   const { json, config } = buildConfig(storagePath, options)
 
   if (options.printConfig) {
-    console.log(json)
+    process.stdout.write(`${json}\n`)
     return
   }
 
@@ -162,7 +175,7 @@ async function main() {
 
   const env = {
     ...process.env,
-    ...((config as { mcpServers?: any }).mcpServers?.postie?.env ?? {}),
+    ...((config as McpConfigWithServers).mcpServers?.postie?.env ?? {}),
   }
 
   const mcpServerPath = path.resolve(__dirname, 'mcpServer.js')
@@ -176,8 +189,8 @@ async function main() {
   })
 }
 
-main().catch((error) => {
+void main().catch((error) => {
   const message = error instanceof Error ? error.message : String(error)
-  console.error(message)
+  process.stderr.write(`${message}\n`)
   process.exit(1)
 })

@@ -70,14 +70,17 @@ export class ScreenshotService {
     const browser = await chromium.launch({ headless: true })
 
     try {
-      const page = await browser.newPage({
+      const context = await browser.newContext({
+        javaScriptEnabled: false,
         viewport: {
           width: config.width,
           height: config.height,
         },
       })
+      const page = await context.newPage()
 
-      await page.setContent(email.html, {
+      const sanitizedHtml = sanitizeHtmlForScreenshot(email.html)
+      await page.setContent(sanitizedHtml, {
         waitUntil: 'domcontentloaded',
       })
       await page.waitForLoadState('load')
@@ -93,6 +96,8 @@ export class ScreenshotService {
         type: 'png',
         fullPage: true,
       })
+
+      await context.close()
     } finally {
       await browser.close()
     }
@@ -107,4 +112,19 @@ export class ScreenshotService {
       createdAt: new Date().toISOString(),
     }
   }
+}
+
+function sanitizeHtmlForScreenshot(html: string): string {
+  const withoutScripts = html.replace(
+    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+    ''
+  )
+  const withoutEventHandlers = withoutScripts.replace(
+    /\son\w+=(".*?"|'.*?'|[^\s>]+)/gi,
+    ''
+  )
+  return withoutEventHandlers.replace(
+    /\s(href|src)\s*=\s*(["'])\s*javascript:[^"']*\2/gi,
+    ' $1="#"'
+  )
 }

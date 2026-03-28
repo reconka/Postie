@@ -27,6 +27,8 @@ import {
 } from '../screenshot/presetsConfig'
 
 const screenshotPresetSchema = z.string().min(1).optional()
+const defaultPackageVersion =
+  typeof packageVersion === 'string' ? packageVersion : String(packageVersion)
 
 function formatJson(data: unknown): string {
   return JSON.stringify(data, null, 2)
@@ -35,7 +37,7 @@ function formatJson(data: unknown): string {
 export function createPostieMcpServer(
   store: FileEmailStore,
   screenshotService: ScreenshotService,
-  version: string = packageVersion,
+  version: string = defaultPackageVersion,
   getCompatibilityClients: () => string[] = () => DEFAULT_COMPATIBILITY_CLIENTS,
   getScreenshotPresets: () => string[] = () => DEFAULT_SCREENSHOT_PRESETS
 ) {

@@ -5,8 +5,8 @@ import { Attachment } from 'mailparser'
 import { FileEmailStore } from './mcp/FileEmailStore'
 
 export class EmailStorageManager {
-  private storageUri: vscode.Uri
-  private fileEmailStore: FileEmailStore
+  private readonly storageUri: vscode.Uri
+  private readonly fileEmailStore: FileEmailStore
 
   constructor(context: vscode.ExtensionContext) {
     this.storageUri = context.globalStorageUri

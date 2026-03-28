@@ -27,26 +27,22 @@ export class EmailTreeDataProvider
     )
 
     if (element.type === 'server-info') {
-      Object.assign(treeItem, {
-        contextValue: 'server-info',
-        iconPath: new vscode.ThemeIcon('server-environment'),
-      })
+      treeItem.contextValue = 'server-info'
+      treeItem.iconPath = new vscode.ThemeIcon('server-environment')
       return treeItem
     }
 
-    Object.assign(treeItem, {
-      contextValue: 'email',
-      iconPath: new vscode.ThemeIcon(
-        element.email.opened ? 'mail-read' : 'mail'
-      ),
-      description: element.email.from,
-      tooltip: this.generateTooltip(element),
-      command: {
-        command: 'postie.openEmail',
-        title: 'Open Email',
-        arguments: [element],
-      },
-    })
+    treeItem.contextValue = 'email'
+    treeItem.iconPath = new vscode.ThemeIcon(
+      element.email.opened ? 'mail-read' : 'mail'
+    )
+    treeItem.description = element.email.from
+    treeItem.tooltip = this.generateTooltip(element)
+    treeItem.command = {
+      command: 'postie.openEmail',
+      title: 'Open Email',
+      arguments: [element],
+    }
     return treeItem
   }
 
@@ -80,6 +76,10 @@ export class EmailTreeDataProvider
 
   public refresh(): void {
     this._onDidChangeTreeData.fire()
+  }
+
+  public stopEmailService(): void {
+    this.emailService.stopServer()
   }
 
   private generateTooltip(element: EmailTreeItem): string {

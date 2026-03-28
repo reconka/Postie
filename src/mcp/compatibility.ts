@@ -20,16 +20,18 @@ export interface CompatibilityCheckResult {
   rows: CompatibilityRow[]
 }
 
+interface CompatibilityProcessor {
+  success: boolean
+  errors: string[]
+  warnings: string[]
+}
+
 export function checkEmailCompatibility(
   html: string,
   clients: string[]
 ): CompatibilityCheckResult {
   const service = new EmailCompatibilityService(html, clients)
-  const processor = service.processor ?? {
-    success: false,
-    errors: ['Unknown compatibility processing error'],
-    warnings: [],
-  }
+  const processor = normalizeCompatibilityProcessor(service.processor)
 
   if (processor.success) {
     return {
@@ -66,4 +68,36 @@ export function checkEmailCompatibility(
     warnings,
     rows: [...errorRows, ...warningRows],
   }
+}
+
+function normalizeCompatibilityProcessor(value: unknown): CompatibilityProcessor {
+  if (value && typeof value === 'object') {
+    const processor = value as {
+      success?: unknown
+      errors?: unknown
+      warnings?: unknown
+    }
+    const success = processor.success === true
+    const errors = normalizeStringArray(processor.errors)
+    const warnings = normalizeStringArray(processor.warnings)
+    return { success, errors, warnings }
+  }
+
+  return {
+    success: false,
+    errors: ['Unknown compatibility processing error'],
+    warnings: [],
+  }
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === 'string')
+  }
+
+  if (typeof value === 'string') {
+    return [value]
+  }
+
+  return []
 }

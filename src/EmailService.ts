@@ -97,11 +97,13 @@ export class EmailService {
         })
         stream.on('end', () => {
           if (totalSize > (getConfig('maxEmailSize') as number)) {
-            let err = new Error('Message exceeds fixed maximum message size')
-            return callback(err)
+            const error = new Error(
+              'Message exceeds fixed maximum message size'
+            )
+            return callback(error)
           }
           const rawEmail = Buffer.concat(mailChunks)
-          this.handleNewEmail(rawEmail)
+          void this.handleNewEmail(rawEmail)
           callback()
         })
       },

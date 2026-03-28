@@ -121,10 +121,10 @@ export function registerCommands(
 
         const workspaceRoot = workspace.workspaceFolders?.[0]?.uri.fsPath
         const paths = getDefaultCursorConfigPaths(workspaceRoot)
+        const postieEntry = getPostieEntry(mcpConfig)
         const written = writeCursorMcpConfigs({
           paths,
-          postieEntry:
-            (mcpConfig as { mcpServers?: any }).mcpServers?.postie ?? {},
+          postieEntry,
         })
 
         const message = `Postie MCP config updated in: ${written.join(', ')}`
@@ -164,13 +164,12 @@ export function registerCommands(
           screenshotPresets: screenshotPresets || undefined,
         })
 
-        const postieEntry =
-          (mcpConfig as { mcpServers?: any }).mcpServers?.postie ?? {}
+        const postieEntry = getPostieEntry(mcpConfig)
 
         const codexPostieConfig = {
-          command: postieEntry.command as string,
-          args: postieEntry.args as string[],
-          env: (postieEntry.env as Record<string, string>) ?? {},
+          command: postieEntry.command ?? 'node',
+          args: postieEntry.args ?? [mcpServerPath],
+          env: postieEntry.env ?? {},
         }
 
         const workspaceRoot = workspace.workspaceFolders?.[0]?.uri.fsPath
@@ -208,14 +207,13 @@ export function registerCommands(
           screenshotPresets: screenshotPresets || undefined,
         })
 
-        const postieEntry =
-          (mcpConfig as { mcpServers?: any }).mcpServers?.postie ?? {}
+        const postieEntry = getPostieEntry(mcpConfig)
 
         const claudePostieConfig = {
           type: 'stdio' as const,
-          command: postieEntry.command as string,
-          args: postieEntry.args as string[],
-          env: (postieEntry.env as Record<string, string>) ?? {},
+          command: postieEntry.command ?? 'node',
+          args: postieEntry.args ?? [mcpServerPath],
+          env: postieEntry.env ?? {},
         }
 
         const workspaceRoot = workspace.workspaceFolders?.[0]?.uri.fsPath
@@ -234,6 +232,22 @@ export function registerCommands(
     },
     true
   )
+}
+
+type PostieMcpEntry = Record<string, unknown> & {
+  command?: string
+  args?: string[]
+  env?: Record<string, string>
+}
+
+type McpConfigWithServers = {
+  mcpServers?: {
+    postie?: PostieMcpEntry
+  }
+}
+
+function getPostieEntry(config: Record<string, unknown>): PostieMcpEntry {
+  return (config as McpConfigWithServers).mcpServers?.postie ?? {}
 }
 
 async function resolveMcpStoragePath(): Promise<string> {
