@@ -16,6 +16,7 @@ function main() {
   document
     .getElementById('open-source')
     ?.addEventListener('click', openSourceCode)
+  document.getElementById('copy-id')?.addEventListener('click', copyEmailId)
 
   document.querySelectorAll('.open-attachment').forEach((element) => {
     element.addEventListener('click', function () {
@@ -56,6 +57,12 @@ function main() {
   function downloadEmail() {
     vscode.postMessage({
       command: 'download-eml',
+    })
+  }
+
+  function copyEmailId() {
+    vscode.postMessage({
+      command: 'copy-id',
     })
   }
 }

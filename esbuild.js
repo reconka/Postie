@@ -1,4 +1,4 @@
-const { build } = require('esbuild')
+const { build, context } = require('esbuild')
 const { copy } = require('esbuild-plugin-copy')
 
 //@ts-check
@@ -21,6 +21,33 @@ const extensionConfig = {
   entryPoints: ['./src/extension.ts'],
   outfile: './out/extension.js',
   external: ['vscode', 'canvas'],
+}
+
+/** @type BuildOptions */
+const mcpServerConfig = {
+  ...baseConfig,
+  platform: 'node',
+  mainFields: ['module', 'main'],
+  format: 'cjs',
+  entryPoints: ['./src/mcp/server.ts'],
+  outfile: './out/mcpServer.js',
+  external: [
+    '@modelcontextprotocol/sdk',
+    '@modelcontextprotocol/sdk/*',
+    'playwright',
+    'zod',
+    'zod/*',
+  ],
+}
+
+/** @type BuildOptions */
+const mcpCliConfig = {
+  ...baseConfig,
+  platform: 'node',
+  mainFields: ['module', 'main'],
+  format: 'cjs',
+  entryPoints: ['./src/mcp/cli.ts'],
+  outfile: './out/postie-mcp.js',
 }
 
 // Config for webview source code (to be run in a web-based context)
@@ -52,45 +79,43 @@ const webviewConfig = {
   ],
 }
 
-// This watch config adheres to the conventions of the esbuild-problem-matchers
-// extension (https://github.com/connor4312/esbuild-problem-matchers#esbuild-via-js)
-/** @type BuildOptions */
-const watchConfig = {
-  watch: {
-    onRebuild(error, result) {
-      console.log('[watch] build started')
-      if (error) {
-        error.errors.forEach((error) =>
-          console.error(
-            `> ${error.location.file}:${error.location.line}:${error.location.column}: error: ${error.text}`
-          )
-        )
-      } else {
-        console.log('[watch-config] build finished')
-      }
-    },
-  },
-}
-
 // Build script
 ;(async () => {
   const args = process.argv.slice(2)
   try {
     if (args.includes('--watch')) {
-      // Build and watch extension and webview code
       console.log('[watch] build started')
-      await build({
-        ...extensionConfig,
-        ...watchConfig,
-      })
-      await build({
-        ...webviewConfig,
-        ...watchConfig,
-      })
-      console.log('[watch] build finished')
+      const extensionContext = await context(extensionConfig)
+      const mcpServerContext = await context(mcpServerConfig)
+      const mcpCliContext = await context(mcpCliConfig)
+      const webviewContext = await context(webviewConfig)
+
+      await Promise.all([
+        extensionContext.watch(),
+        mcpServerContext.watch(),
+        mcpCliContext.watch(),
+        webviewContext.watch(),
+      ])
+
+      console.log('[watch] watching for changes')
+
+      const stopWatching = async () => {
+        await Promise.all([
+          extensionContext.dispose(),
+          mcpServerContext.dispose(),
+          mcpCliContext.dispose(),
+          webviewContext.dispose(),
+        ])
+        process.exit(0)
+      }
+
+      process.on('SIGINT', stopWatching)
+      process.on('SIGTERM', stopWatching)
     } else {
       // Build extension and webview code
       await build(extensionConfig)
+      await build(mcpServerConfig)
+      await build(mcpCliConfig)
       await build(webviewConfig)
       console.log('build complete')
     }

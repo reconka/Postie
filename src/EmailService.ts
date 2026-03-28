@@ -12,6 +12,13 @@ import { formatDateToTime, formatAddresses } from './utilities/formatters'
 import { simpleParser, ParsedMail, Attachment } from 'mailparser'
 import { SmtpConnectionManager } from './SMTPConnectionManager'
 
+export interface ServerConnectionInfo {
+  host: string
+  port: number
+  username: string
+  password: string
+}
+
 export class EmailService {
   private emails: EmailSummary[] = []
   private static instance: EmailService
@@ -82,10 +89,10 @@ export class EmailService {
         return callback(null, { user: auth.username })
       },
       onData: (stream, _session, callback) => {
-        let mailData = ''
+        const mailChunks: Buffer[] = []
         let totalSize = 0
         stream.on('data', (chunk) => {
-          mailData += chunk
+          mailChunks.push(chunk)
           totalSize += chunk.length
         })
         stream.on('end', () => {
@@ -93,7 +100,8 @@ export class EmailService {
             let err = new Error('Message exceeds fixed maximum message size')
             return callback(err)
           }
-          this.handleNewEmail(mailData)
+          const rawEmail = Buffer.concat(mailChunks)
+          this.handleNewEmail(rawEmail)
           callback()
         })
       },
@@ -113,6 +121,7 @@ export class EmailService {
       console.log('Trying to connect to the SMTP server')
       try {
         await this.smtpConnectionManager.connectToSmtpServer()
+        this.setServerState(true)
       } catch (error) {
         this.setServerState(false)
         if (error instanceof Error) {
@@ -152,6 +161,15 @@ export class EmailService {
     })
   }
 
+  public getServerConnectionInfo(): ServerConnectionInfo {
+    return {
+      host: getConfig('allowExternalMails') ? '0.0.0.0' : '127.0.0.1',
+      port: getConfig('smtpServerPort'),
+      username: getConfig('smtpUsername'),
+      password: getConfig('smtpPassword'),
+    }
+  }
+
   public deleteEmailSummaries(): void {
     this.emails = []
     this._onEmailsChanged.fire()
@@ -180,7 +198,7 @@ export class EmailService {
     this._onEmailsChanged.fire()
   }
 
-  private async handleNewEmail(rawEmail: string): Promise<void> {
+  private async handleNewEmail(rawEmail: Buffer): Promise<void> {
     try {
       const parsedEmail: ParsedMail = await simpleParser(rawEmail)
 
@@ -194,7 +212,7 @@ export class EmailService {
         bcc: formatAddresses(parsedEmail.bcc),
         text: parsedEmail.text || '',
         html: parsedEmail.html || '',
-        source: rawEmail,
+        source: rawEmail.toString('utf8'),
         attachments: parsedEmail.attachments.map((attachment: Attachment) => ({
           contentType: attachment.contentType,
           fileUrl: this.emailStorageManager.storeAttachments(

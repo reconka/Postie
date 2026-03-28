@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import { EmailService } from './EmailService'
 import type { EmailTreeItem } from './types/EmailService'
+import type { EmailService } from './types/EmailService'
 import { formatRelative } from 'date-fns/formatRelative'
 import { enGB } from 'date-fns/locale'
 
@@ -25,6 +25,15 @@ export class EmailTreeDataProvider
       element.label,
       vscode.TreeItemCollapsibleState.None
     )
+
+    if (element.type === 'server-info') {
+      Object.assign(treeItem, {
+        contextValue: 'server-info',
+        iconPath: new vscode.ThemeIcon('server-environment'),
+      })
+      return treeItem
+    }
+
     Object.assign(treeItem, {
       contextValue: 'email',
       iconPath: new vscode.ThemeIcon(
@@ -45,7 +54,27 @@ export class EmailTreeDataProvider
     if (element) {
       return Promise.resolve([])
     } else {
-      return Promise.resolve(this.emailService.getEmailSummaries())
+      const emailRows = this.emailService.getEmailSummaries().map((item) => ({
+        ...item,
+        type: 'email' as const,
+      }))
+
+      if (emailRows.length > 0) {
+        return Promise.resolve(emailRows)
+      }
+
+      if (!this.emailService.isRunning) {
+        return Promise.resolve([])
+      }
+
+      const smtp = this.emailService.getServerConnectionInfo()
+      const maskedPassword = this.maskCredential(smtp.password)
+      const infoItem: EmailTreeItem = {
+        type: 'server-info',
+        label: `Server running on ${smtp.host}:${smtp.port}  user=${smtp.username}  pass=${maskedPassword}`,
+      } as EmailTreeItem
+
+      return Promise.resolve([infoItem])
     }
   }
 
@@ -54,11 +83,27 @@ export class EmailTreeDataProvider
   }
 
   private generateTooltip(element: EmailTreeItem): string {
+    if (element.type !== 'email') {
+      return element.label
+    }
+
     const receivedDateTime = formatRelative(
       new Date(element.email.receivedDateTime),
       new Date(),
       { locale: enGB }
     )
     return `From: ${element.email.from}\nTo: ${element.email.to}\nSubject: ${element.email.subject}\nReceived: ${receivedDateTime}`
+  }
+
+  private maskCredential(value: string): string {
+    if (value.length === 0) {
+      return ''
+    }
+
+    if (value.length === 1) {
+      return '*'
+    }
+
+    return `${value[0]}***${value[value.length - 1]}`
   }
 }

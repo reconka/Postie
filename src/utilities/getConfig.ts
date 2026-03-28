@@ -10,6 +10,7 @@ export interface Config {
   showNewEmailNotification: boolean
   maxStoredEmailsCount: number
   defaultEmailView: 'desktop' | 'tablet' | 'mobile' | 'text-only'
+  mcpStoragePath: string
 }
 
 export function getConfig<K extends keyof Config>(key: K): Config[K] {
