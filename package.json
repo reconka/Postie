@@ -385,7 +385,6 @@
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/glob": "^9.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "25.x",
     "@types/sanitize-html": "^2.16.1",
