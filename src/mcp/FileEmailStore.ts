@@ -40,6 +40,9 @@ export class FileEmailStore {
         encoding: 'utf8',
         flag: 'a+',
       })
+      if (data.trim().length === 0) {
+        return []
+      }
       const emails = JSON.parse(data) as EmailSummary[]
       return emails
     } catch (error) {
