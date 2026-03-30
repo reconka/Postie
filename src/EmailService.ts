@@ -142,13 +142,20 @@ export class EmailService {
     this._onEmailsChanged.fire()
 
     if (this.server) {
-      await new Promise<void>((resolve) => {
-        this.server!.close()
-        this.setServerState(false)
-
-        resolve()
+      const server = this.server
+      await new Promise<void>((resolve, reject) => {
+        server.close((error?: Error | null) => {
+          if (error) {
+            reject(error)
+            return
+          }
+          this.setServerState(false)
+          resolve()
+        })
       })
       this.server = null
+    } else {
+      this.setServerState(false)
     }
     await this.smtpConnectionManager.closeConnection()
   }
