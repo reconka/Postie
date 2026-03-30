@@ -17,6 +17,7 @@ export function Field({ icon, label, value }: FieldProps) {
         htmlFor={inputId}
         title={label}
       >
+        <span className={`codicon codicon-${icon}`} aria-hidden="true"></span>
         {label}:
       </VscodeLabel>
       <VscodeTextfield
