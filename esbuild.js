@@ -1,5 +1,7 @@
 const { build, context } = require('esbuild')
 const { copy } = require('esbuild-plugin-copy')
+const fs = require('fs')
+const path = require('path')
 
 //@ts-check
 /** @typedef {import('esbuild').BuildOptions} BuildOptions **/
@@ -52,8 +54,9 @@ const webviewConfig = {
   ...baseConfig,
   target: 'es2020',
   format: 'esm',
-  entryPoints: ['./src/webview/main.ts'],
+  entryPoints: ['./src/webview/main.tsx'],
   outfile: './out/webview.js',
+  jsx: 'automatic',
   plugins: [
     copy({
       resolveFrom: 'cwd',
@@ -93,9 +96,37 @@ const webviewConfig = {
         webviewContext.watch(),
       ])
 
+      const mediaDir = path.join(process.cwd(), 'src', 'media')
+      let rebuildingMedia = false
+      let mediaRebuildPending = false
+
+      const rebuildWebviewForMediaChange = async () => {
+        if (rebuildingMedia) {
+          mediaRebuildPending = true
+          return
+        }
+
+        rebuildingMedia = true
+        try {
+          do {
+            mediaRebuildPending = false
+            await webviewContext.rebuild()
+          } while (mediaRebuildPending)
+        } catch (err) {
+          console.error('[watch] media rebuild failed', err.message || err)
+        } finally {
+          rebuildingMedia = false
+        }
+      }
+
+      const mediaWatcher = fs.watch(mediaDir, { recursive: true }, () => {
+        void rebuildWebviewForMediaChange()
+      })
+
       console.log('[watch] watching for changes')
 
       const stopWatching = async () => {
+        mediaWatcher.close()
         await Promise.all([
           extensionContext.dispose(),
           mcpServerContext.dispose(),

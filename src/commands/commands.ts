@@ -71,15 +71,15 @@ export function registerCommands(
     }
   )
 
-  registerCommand('postie.stopServer', (): void => {
-    emailService.stopServer()
+  registerCommand('postie.stopServer', async (): Promise<void> => {
+    await emailService.stopServer()
     window.showInformationMessage('Postie Email Server stopped!')
-  })
+  }, true)
 
   registerCommand(
     'postie.restartServer',
-    () => {
-      emailService.stopServer()
+    async () => {
+      await emailService.stopServer()
       emailService.startServer()
 
       window.showInformationMessage('Postie Email Server restarted!')

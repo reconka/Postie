@@ -6,10 +6,10 @@ module.exports = [
     ignores: ['*.config.js', 'out/**', 'dist/**', '**/*.d.ts'],
   },
   {
-    files: ['**/*.ts'],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsParser,
-      ecmaVersion: 2015,
+      ecmaVersion: 2020,
       sourceType: 'module',
     },
     plugins: {
