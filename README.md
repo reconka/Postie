@@ -10,7 +10,7 @@
 [![Jest](https://img.shields.io/badge/tested_with-jest_30-%23994499.svg?style=flat-square)](https://jestjs.io/)
 [![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Postie-brightgreen.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=Postie.postie)
 [![ESLint](https://img.shields.io/badge/linted_with-eslint_9-%234B32C3.svg?style=flat-square)](https://eslint.org/)
-[![Version](https://img.shields.io/badge/version-1.1.2-orange.svg?style=flat-square)](https://github.com/reconka/Postie)
+[![Version](https://img.shields.io/badge/version-1.1.3-orange.svg?style=flat-square)](https://github.com/reconka/Postie)
 [![CI](https://github.com/reconka/Postie/actions/workflows/ci.yml/badge.svg)](https://github.com/reconka/Postie/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7933f74fa7e41008a8485f014fb562c)](https://app.codacy.com/gh/reconka/Postie/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
