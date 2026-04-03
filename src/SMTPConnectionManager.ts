@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import { window } from 'vscode'
+import { window, l10n } from 'vscode'
 import { getConfig } from './utilities/getConfig'
 
 export class SmtpConnectionManager {
@@ -27,7 +27,7 @@ export class SmtpConnectionManager {
 
     try {
       await this.verifyConnection()
-      window.showInformationMessage('🎉 Connected to Postie server.')
+      window.showInformationMessage(l10n.t('🎉 Connected to Postie server.'))
     } catch (error) {
       await this.handleConnectionError(error)
     }
@@ -35,7 +35,7 @@ export class SmtpConnectionManager {
 
   private async verifyConnection(): Promise<void> {
     if (!this.transporter) {
-      throw new Error('Transporter not initialized')
+      throw new Error(l10n.t('Transporter not initialized'))
     }
 
     await this.transporter.verify()
@@ -43,7 +43,7 @@ export class SmtpConnectionManager {
 
   private async handleConnectionError(error: unknown): Promise<void> {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    throw new Error(`😵 Failed to connect as SMTP client: ${errorMessage}`)
+    throw new Error(l10n.t('😵 Failed to connect as SMTP client: {0}', errorMessage))
   }
 
   public async closeConnection(): Promise<void> {

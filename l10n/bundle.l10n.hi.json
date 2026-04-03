@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 Postie सर्वर से जुड़ गया।",
+  "Transporter not initialized": "ट्रांसपोर्टर प्रारंभ नहीं हुआ",
+  "😵 Failed to connect as SMTP client: {0}": "😵 SMTP क्लाइंट के रूप में कनेक्ट नहीं हो सका: {0}",
+  "Open Email": "ईमेल खोलें",
+  "Server running on {0}:{1}  user={2}  pass={3}": "सर्वर {0}:{1} पर चल रहा है  user={2}  pass={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "प्रेषक: {0}\nप्राप्तकर्ता: {1}\nविषय: {2}\nप्राप्त: {3}",
+  "Error creating file: {0}": "फ़ाइल बनाने में त्रुटि: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie पोर्ट {0} पर सुन रहा है",
+  "An unknown error occurred while connecting to the SMTP server": "SMTP सर्वर से जुड़ते समय एक अज्ञात त्रुटि हुई",
+  "All emails deleted successfully.": "सभी ईमेल सफलतापूर्वक हटाई गईं।",
+  "Email not found": "ईमेल नहीं मिली",
+  "Error loading email: {0}": "ईमेल लोड करने में त्रुटि: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "कोई विषय नहीं",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "ईमेल खोलें",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "नई ईमेल: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "{0} चलाते समय त्रुटि: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "Postie MCP सेटअप रद्द किया गया। कोई बदलाव नहीं किया गया।",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "MCP कॉन्फ़िग सेटअप करने में विफल: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "ईमेल पैनल रीफ़्रेश नहीं हो सका। नया पैनल फिर से खोला जा रहा है।",
+  "Email compatibility data could not be parsed. Showing empty results.": "ईमेल कम्पैटिबिलिटी डेटा पार्स नहीं हो सका। खाली परिणाम दिखाए जा रहे हैं।",
+  "From": "प्रेषक",
+  "Subject": "विषय",
+  "To": "प्राप्तकर्ता",
+  "CC": "CC",
+  "Bcc": "Bcc",
+  "Date": "दिनांक",
+  "Attachment": "संलग्नक",
+  "Attachments": "संलग्नक",
+  "Source": "स्रोत",
+  "Open Eml": "EML खोलें",
+  "Copy Id": "ID कॉपी करें",
+  "Show More": "और दिखाएँ",
+  "Show Less": "कम दिखाएँ",
+  "Email preview tabs": "ईमेल प्रीव्यू टैब्स",
+  "Mobile View": "मोबाइल दृश्य",
+  "Tablet View": "टैबलेट दृश्य",
+  "Desktop View": "डेस्कटॉप दृश्य",
+  "Text Only": "केवल टेक्स्ट",
+  "Email Client Compatibility": "ईमेल क्लाइंट संगतता",
+  "Compatibility result": "संगतता परिणाम",
+  "Report Type": "रिपोर्ट प्रकार",
+  "Result": "परिणाम",
+  "Client": "क्लाइंट",
+  "attachment": "संलग्नक",
+  "Email ID copied to clipboard": "ईमेल ID क्लिपबोर्ड में कॉपी की गई",
+  "Postie MCP Server": "Postie MCP सर्वर",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "Postie MCP सर्वर उपलब्ध नहीं है क्योंकि यह VS Code बिल्ड MCP extension API उपलब्ध नहीं कराता। VS Code 1.102 या नया संस्करण उपयोग करें।",
+  "Emails deleted!": "ईमेल हटाई गईं!",
+  "Error deleting email: {0}": "ईमेल हटाने में त्रुटि: {0}",
+  "Postie Email Server stopped!": "Postie ईमेल सर्वर रोक दिया गया!",
+  "Postie Email Server restarted!": "Postie ईमेल सर्वर पुनः शुरू किया गया!",
+  "Postie MCP config updated in: {0}": "Postie MCP कॉन्फ़िग यहाँ अपडेट हुआ: {0}",
+  "Postie MCP config updated for Codex in: {0}": "Codex के लिए Postie MCP कॉन्फ़िग यहाँ अपडेट हुआ: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "Claude Code के लिए Postie MCP कॉन्फ़िग यहाँ अपडेट हुआ: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "सहेजा गया MCP storage path मौजूद नहीं है: {0}. कृपया नया चुनें।",
+  "Select the Postie storage folder to use for MCP": "MCP के लिए उपयोग करने हेतु Postie स्टोरेज फ़ोल्डर चुनें",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie स्टोरेज"
+}

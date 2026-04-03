@@ -42,102 +42,102 @@
     "mcpServerDefinitionProviders": [
       {
         "id": "postie.mcp-server",
-        "label": "Postie MCP Server"
+        "label": "%postie.mcpServer.label%"
       }
     ],
     "walkthroughs": [
       {
         "id": "postie-getting-started",
-        "title": "Getting Started with Postie",
-        "description": "Learn how to use Postie to catch, view, and manage emails directly within VS Code.",
+        "title": "%postie.walkthrough.gettingStarted.title%",
+        "description": "%postie.walkthrough.gettingStarted.description%",
         "steps": [
           {
             "id": "postie-intro",
-            "title": "Introduction to Postie",
-            "description": "Postie is an email catcher server that runs in the background, allowing you to view emails, attachments, and preview emails in different screen sizes directly within VS Code.",
+            "title": "%postie.walkthrough.gettingStarted.steps.intro.title%",
+            "description": "%postie.walkthrough.gettingStarted.steps.intro.description%",
             "media": {
               "image": "./out/welcome.jpg",
-              "altText": "Postie introduction"
+              "altText": "%postie.walkthrough.gettingStarted.steps.intro.altText%"
             }
           },
           {
             "id": "postie-config",
-            "title": "Configure your application to use Postie",
-            "description": "To start using Postie, you need to configure your application to send emails to the Postie SMTP server. You can configure the SMTP server port in the [Postie settings](command:workbench.action.openSettings?%22postie%22). ",
+            "title": "%postie.walkthrough.gettingStarted.steps.config.title%",
+            "description": "%postie.walkthrough.gettingStarted.steps.config.description%",
             "media": {
               "markdown": "/out/integration.md"
             }
           },
           {
             "id": "postie-view-emails",
-            "title": "Viewing Emails",
-            "description": "Navigate to the primary sidebar and click on the Postie icon to view all received emails. From there, you can click on any email to see its details, access attachments, and download the email as an .eml file.",
+            "title": "%postie.walkthrough.gettingStarted.steps.viewEmails.title%",
+            "description": "%postie.walkthrough.gettingStarted.steps.viewEmails.description%",
             "media": {
               "image": "./out/email-preview.gif",
-              "altText": "Viewing emails in Postie"
+              "altText": "%postie.walkthrough.gettingStarted.steps.viewEmails.altText%"
             }
           },
           {
             "id": "postie-preview-emails",
-            "title": "Previewing Emails",
-            "description": "To ensure your emails look fantastic on every device, preview them in tablet, mobile, and desktop views. For clicking on a link, press CMD and click simultaneously.",
+            "title": "%postie.walkthrough.gettingStarted.steps.previewEmails.title%",
+            "description": "%postie.walkthrough.gettingStarted.steps.previewEmails.description%",
             "media": {
               "image": "./out/email-details-preview.gif",
-              "altText": "Previewing emails in Postie"
+              "altText": "%postie.walkthrough.gettingStarted.steps.previewEmails.altText%"
             }
           },
           {
             "id": "postie-quick-commands",
-            "title": "Using Quick Commands",
-            "description": "Access quick commands by pressing `Cmd+P` (Mac) or `Ctrl+P` (Windows/Linux) and typing 'Postie' to start, stop, restart the server, or delete emails.",
+            "title": "%postie.walkthrough.gettingStarted.steps.quickCommands.title%",
+            "description": "%postie.walkthrough.gettingStarted.steps.quickCommands.description%",
             "media": {
               "image": "./out/email-quick-command.gif",
-              "altText": "Using quick commands in Postie"
+              "altText": "%postie.walkthrough.gettingStarted.steps.quickCommands.altText%"
             }
           }
         ]
       },
       {
         "id": "postie-mcp-guide",
-        "title": "Use Postie MCP in VS Code",
-        "description": "Connect VS Code chat tools to Postie and inspect emails by id, screenshots, and compatibility checks.",
+        "title": "%postie.walkthrough.mcpGuide.title%",
+        "description": "%postie.walkthrough.mcpGuide.description%",
         "steps": [
           {
             "id": "postie-mcp-prerequisites",
-            "title": "Check Prerequisites",
-            "description": "Use a VS Code build with MCP support, install Postie, and make sure at least one email is captured.",
+            "title": "%postie.walkthrough.mcpGuide.steps.prerequisites.title%",
+            "description": "%postie.walkthrough.mcpGuide.steps.prerequisites.description%",
             "media": {
               "markdown": "/MCP_VSCODE_GUIDE.md"
             }
           },
           {
             "id": "postie-mcp-enable-server",
-            "title": "Enable Postie MCP Server",
-            "description": "Open the Command Palette and run `MCP: List Servers`, then enable `Postie MCP Server`.",
+            "title": "%postie.walkthrough.mcpGuide.steps.enableServer.title%",
+            "description": "%postie.walkthrough.mcpGuide.steps.enableServer.description%",
             "media": {
               "markdown": "/MCP_VSCODE_GUIDE.md"
             }
           },
           {
             "id": "postie-mcp-discover-tools",
-            "title": "Discover Tools",
-            "description": "In VS Code chat tool configuration, enable Postie tools including `list_emails`, `get_email`, `capture_email_screenshot`, and compatibility tools.",
+            "title": "%postie.walkthrough.mcpGuide.steps.discoverTools.title%",
+            "description": "%postie.walkthrough.mcpGuide.steps.discoverTools.description%",
             "media": {
               "markdown": "/MCP_VSCODE_GUIDE.md"
             }
           },
           {
             "id": "postie-mcp-debug-workflow",
-            "title": "Run Debug Workflow",
-            "description": "Ask chat to list emails, copy an `emailId`, inspect details, run compatibility checks, then generate screenshots from `capture_email_screenshot`.",
+            "title": "%postie.walkthrough.mcpGuide.steps.debugWorkflow.title%",
+            "description": "%postie.walkthrough.mcpGuide.steps.debugWorkflow.description%",
             "media": {
               "markdown": "/MCP_VSCODE_GUIDE.md"
             }
           },
           {
             "id": "postie-mcp-settings",
-            "title": "Tune MCP Settings",
-            "description": "Configure [Postie settings](command:workbench.action.openSettings?%22postie%22) like `postie.compatibilityClients` and `postie.screenshotPresets` to control MCP defaults.",
+            "title": "%postie.walkthrough.mcpGuide.steps.settings.title%",
+            "description": "%postie.walkthrough.mcpGuide.steps.settings.description%",
             "media": {
               "markdown": "/MCP_VSCODE_GUIDE.md"
             }
@@ -146,33 +146,33 @@
       }
     ],
     "configuration": {
-      "title": "Postie",
+      "title": "%postie.configuration.title%",
       "properties": {
         "postie.smtpServerPort": {
           "type": "number",
           "default": 587,
-          "description": "SMTP server port"
+          "description": "%postie.configuration.smtpServerPort.description%"
         },
         "postie.smtpUsername": {
           "type": "string",
           "default": "postie",
-          "description": "SMTP server username"
+          "description": "%postie.configuration.smtpUsername.description%"
         },
         "postie.smtpPassword": {
           "type": "string",
           "default": "postie",
-          "description": "SMTP server password"
+          "description": "%postie.configuration.smtpPassword.description%"
         },
         "postie.allowExternalMails": {
           "type": "boolean",
           "default": false,
-          "description": "Allow external emails to be received",
+          "description": "%postie.configuration.allowExternalMails.description%",
           "comment": "This is useful for testing emails sent from external sources"
         },
         "postie.showNewEmailNotification": {
           "type": "boolean",
           "default": true,
-          "description": "Show notification when new email arrives"
+          "description": "%postie.configuration.showNewEmailNotification.description%"
         },
         "postie.compatibilityClients": {
           "type": "array",
@@ -220,7 +220,7 @@
             "gmail.android",
             "outlook.windows"
           ],
-          "markdownDescription": "Email clients to test compatibility. The default is set to test compatibility with Apple Mail, Gmail, and Outlook. Do you want to set a different client? [Check the list of supported clients](https://www.npmjs.com/package/@jsx-email/doiuse-email#emailclients)"
+          "markdownDescription": "%postie.configuration.compatibilityClients.markdownDescription%"
         },
         "postie.screenshotPresets": {
           "type": "array",
@@ -246,12 +246,12 @@
             "pixel-7",
             "ipad-air"
           ],
-          "markdownDescription": "Allowed screenshot preset IDs for MCP screenshot capture. Legacy aliases `desktop`, `tablet`, and `mobile` remain supported for compatibility."
+          "markdownDescription": "%postie.configuration.screenshotPresets.markdownDescription%"
         },
         "postie.mcpStoragePath": {
           "type": "string",
           "default": "",
-          "description": "Override Postie MCP storage path. If unset, Postie will auto-discover and prompt when multiple folders are found."
+          "description": "%postie.configuration.mcpStoragePath.description%"
         },
         "postie.defaultEmailView": {
           "type": "string",
@@ -263,29 +263,29 @@
             "compatibility",
             "text-only"
           ],
-          "description": "Default email view"
+          "description": "%postie.configuration.defaultEmailView.description%"
         },
         "postie.runServerOnStartup": {
           "type": "boolean",
           "default": true,
-          "description": "Automatically run the server on startup"
+          "description": "%postie.configuration.runServerOnStartup.description%"
         },
         "postie.maxStoredEmailsCount": {
           "type": "number",
           "default": 100,
-          "description": "Maximum number of emails to store"
+          "description": "%postie.configuration.maxStoredEmailsCount.description%"
         },
         "postie.maxEmailSize": {
           "type": "number",
           "default": 1048576,
-          "description": "Maximum email size in bytes default is 1MB"
+          "description": "%postie.configuration.maxEmailSize.description%"
         }
       }
     },
     "viewsWelcome": [
       {
         "view": "incomingEmails",
-        "contents": "Welcome to Postie! Click the play button to start the server.",
+        "contents": "%postie.viewsWelcome.incomingEmails.contents%",
         "when": "!postie.isRunning"
       }
     ],
@@ -293,7 +293,7 @@
       "activitybar": [
         {
           "id": "mailView",
-          "title": "Postie",
+          "title": "%postie.viewsContainer.mailView.title%",
           "icon": "./out/postie-icon.svg"
         }
       ]
@@ -302,7 +302,7 @@
       "mailView": [
         {
           "id": "incomingEmails",
-          "name": "Incoming Emails"
+          "name": "%postie.views.mailView.incomingEmails.name%"
         }
       ]
     },
@@ -342,46 +342,47 @@
     "commands": [
       {
         "command": "postie.deleteEmailDetails",
-        "title": "Postie: Delete all emails",
+        "title": "%postie.command.deleteEmailDetails.title%",
         "icon": "$(trash)"
       },
       {
         "command": "postie.deleteSelectedEmail",
-        "title": "Delete selected email",
+        "title": "%postie.command.deleteSelectedEmail.title%",
         "when": "view == incomingEmails",
         "icon": "$(trash)"
       },
       {
         "command": "postie.stopServer",
-        "title": "Postie: Stop Email Server",
+        "title": "%postie.command.stopServer.title%",
         "icon": "$(debug-stop)"
       },
       {
         "command": "postie.restartServer",
-        "title": "Postie: Restart Email Server",
+        "title": "%postie.command.restartServer.title%",
         "icon": "$(play)"
       },
       {
         "command": "postie.setupMcpForEditors",
-        "title": "Postie: Setup MCP for Other Editors",
+        "title": "%postie.command.setupMcpForEditors.title%",
         "icon": "$(gear)"
       },
       {
         "command": "postie.setupMcpForCodex",
-        "title": "Postie: Setup MCP for Codex",
+        "title": "%postie.command.setupMcpForCodex.title%",
         "icon": "$(gear)"
       },
       {
         "command": "postie.setupMcpForClaudeCode",
-        "title": "Postie: Setup MCP for Claude Code",
+        "title": "%postie.command.setupMcpForClaudeCode.title%",
         "icon": "$(gear)"
       }
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run package",
+    "vscode:prepublish": "npm run l10n:extract && npm run package",
     "compile": "node ./esbuild.js",
     "test": "jest",
+    "l10n:extract": "npx @vscode/l10n-dev export --outDir ./l10n ./src",
     "package": "NODE_ENV=production node ./esbuild.js",
     "watch": "node ./esbuild.js --watch",
     "lint": "eslint src --ext .ts,.tsx"
@@ -395,6 +396,7 @@
     "@types/vscode": "^1.102.0",
     "@typescript-eslint/eslint-plugin": "^8.57.2",
     "@typescript-eslint/parser": "^8.57.2",
+    "@vscode/l10n-dev": "^0.0.35",
     "esbuild": "^0.27.4",
     "eslint": "^9.39.4",
     "glob": "^13.0.6",
@@ -420,5 +422,6 @@
     "sanitize-html": "^2.17.2",
     "smtp-server": "^3.18.3",
     "zod": "^4.3.6"
-  }
+  },
+  "l10n": "./l10n"
 }

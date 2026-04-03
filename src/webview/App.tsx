@@ -58,22 +58,30 @@ export function App({ data, vscode }: AppProps) {
     vscode.postMessage({ command: WebviewCommand.DownloadEml })
   const onCopyId = () =>
     vscode.postMessage({ command: WebviewCommand.CopyId })
+  const attachmentsLabel =
+    data.attachments.length === 1
+      ? data.strings.attachmentsOneLabel
+      : data.strings.attachmentsManyLabel
 
   return (
     <div className="postie-view">
-      <Field icon="mail" label="From" value={data.email.from} />
-      <Field icon="book" label="Subject" value={data.email.subject} />
-      <Field icon="account" label="To" value={data.email.to} />
+      <Field icon="mail" label={data.strings.fromLabel} value={data.email.from} />
+      <Field
+        icon="book"
+        label={data.strings.subjectLabel}
+        value={data.email.subject}
+      />
+      <Field icon="account" label={data.strings.toLabel} value={data.email.to} />
 
       <div id="more-info" className={showMore ? '' : 'hidden'}>
-        <Field icon="broadcast" label="CC" value={data.email.cc} />
-        <Field icon="eye-closed" label="Bcc" value={data.email.bcc} />
+        <Field icon="broadcast" label={data.strings.ccLabel} value={data.email.cc} />
+        <Field icon="eye-closed" label={data.strings.bccLabel} value={data.email.bcc} />
         <Field
           icon="calendar"
-          label="Date"
+          label={data.strings.dateLabel}
           value={new Date(data.email.receivedDateTime).toLocaleString()}
         />
-        <p>Attachment{data.attachments.length !== 1 ? 's' : ''}:</p>
+        <p>{attachmentsLabel}:</p>
         <div className="postie-actions">
           {data.attachments.map((attachment) => (
             <VscodeButton
@@ -97,7 +105,7 @@ export function App({ data, vscode }: AppProps) {
           className="postie-button postie-button-secondary"
           onClick={onOpenSource}
         >
-          Source
+          {data.strings.sourceButtonLabel}
         </VscodeButton>
         <VscodeButton
           id="open-eml"
@@ -106,7 +114,7 @@ export function App({ data, vscode }: AppProps) {
           className="postie-button postie-button-secondary"
           onClick={onOpenEml}
         >
-          Open Eml
+          {data.strings.openEmlButtonLabel}
         </VscodeButton>
         <VscodeButton
           id="copy-id"
@@ -115,14 +123,16 @@ export function App({ data, vscode }: AppProps) {
           className="postie-button postie-button-secondary"
           onClick={onCopyId}
         >
-          Copy Id
+          {data.strings.copyIdButtonLabel}
         </VscodeButton>
         <VscodeButton
           id="show-more"
           className="postie-button postie-button-primary"
           onClick={() => setShowMore((prev) => !prev)}
         >
-          {showMore ? 'Show Less' : 'Show More'}
+          {showMore
+            ? data.strings.showLessButtonLabel
+            : data.strings.showMoreButtonLabel}
         </VscodeButton>
       </div>
 
@@ -131,37 +141,37 @@ export function App({ data, vscode }: AppProps) {
       <div
         className="postie-tabs"
         role="tablist"
-        aria-label="Email preview tabs"
+        aria-label={data.strings.tabsAriaLabel}
       >
         <TabButton
           id="mobile"
           activeTab={activeTab}
           onClick={onTabChange}
-          label="Mobile View"
+          label={data.strings.mobileTabLabel}
         />
         <TabButton
           id="tablet"
           activeTab={activeTab}
           onClick={onTabChange}
-          label="Tablet View"
+          label={data.strings.tabletTabLabel}
         />
         <TabButton
           id="desktop"
           activeTab={activeTab}
           onClick={onTabChange}
-          label="Desktop View"
+          label={data.strings.desktopTabLabel}
         />
         <TabButton
           id="text-only"
           activeTab={activeTab}
           onClick={onTabChange}
-          label="Text Only"
+          label={data.strings.textOnlyTabLabel}
         />
         <TabButton
           id="compatibility"
           activeTab={activeTab}
           onClick={onTabChange}
-          label="Email Client Compatibility"
+          label={data.strings.compatibilityTabLabel}
           badgeCount={errorCount}
         />
       </div>
@@ -195,7 +205,7 @@ export function App({ data, vscode }: AppProps) {
         <div>{data.email.text}</div>
       </Panel>
       <Panel visible={activeTab === 'compatibility'} id="view-compatibility">
-        <CompatibilityTable rows={data.compatibilityRows} />
+        <CompatibilityTable rows={data.compatibilityRows} strings={data.strings} />
       </Panel>
     </div>
   )

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { l10n } from 'vscode'
 import { Email, EmailSummary } from './types/Email'
 import { getConfig } from './utilities/getConfig'
 import { Attachment } from 'mailparser'
@@ -57,7 +58,9 @@ export class EmailStorageManager {
       return vscode.Uri.file(filePath)
     } catch (error) {
       const errorMessage = (error as Error).message
-      vscode.window.showErrorMessage(`Error creating file: ${errorMessage}`)
+      vscode.window.showErrorMessage(
+        l10n.t('Error creating file: {0}', errorMessage)
+      )
     }
     return null
   }

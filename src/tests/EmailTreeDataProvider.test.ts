@@ -24,10 +24,16 @@ jest.mock('vscode', () => {
     constructor(public id: string) {}
   }
 
+  const l10n = {
+    t: (message: string, ...args: Array<string | number>) =>
+      message.replace(/\{(\d+)\}/g, (_, idx) => String(args[Number(idx)] ?? '')),
+  }
+
   return {
     EventEmitter,
     TreeItem,
     ThemeIcon,
+    l10n,
     TreeItemCollapsibleState: {
       None: 0,
     },

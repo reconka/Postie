@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 Mit dem Postie-Server verbunden.",
+  "Transporter not initialized": "Transporter nicht initialisiert",
+  "😵 Failed to connect as SMTP client: {0}": "😵 Verbindung als SMTP-Client fehlgeschlagen: {0}",
+  "Open Email": "E-Mail öffnen",
+  "Server running on {0}:{1}  user={2}  pass={3}": "Server läuft auf {0}:{1}  Benutzer={2}  Passwort={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "Von: {0}\nAn: {1}\nBetreff: {2}\nEmpfangen: {3}",
+  "Error creating file: {0}": "Fehler beim Erstellen der Datei: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie lauscht auf Port {0}",
+  "An unknown error occurred while connecting to the SMTP server": "Beim Verbinden mit dem SMTP-Server ist ein unbekannter Fehler aufgetreten",
+  "All emails deleted successfully.": "Alle E-Mails wurden erfolgreich gelöscht.",
+  "Email not found": "E-Mail nicht gefunden",
+  "Error loading email: {0}": "Fehler beim Laden der E-Mail: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "Kein Betreff",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "E-Mail öffnen",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "Neue E-Mail: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "Fehler beim Ausführen von {0}: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "Die Postie-MCP-Einrichtung wurde abgebrochen. Es wurden keine Änderungen vorgenommen.",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "MCP-Konfiguration konnte nicht eingerichtet werden: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "Das E-Mail-Panel konnte nicht aktualisiert werden. Ein neues Panel wird geöffnet.",
+  "Email compatibility data could not be parsed. Showing empty results.": "Die E-Mail-Kompatibilitätsdaten konnten nicht verarbeitet werden. Es werden leere Ergebnisse angezeigt.",
+  "From": "Von",
+  "Subject": "Betreff",
+  "To": "An",
+  "CC": "CC",
+  "Bcc": "Bcc",
+  "Date": "Datum",
+  "Attachment": "Anhang",
+  "Attachments": "Anhänge",
+  "Source": "Quelltext",
+  "Open Eml": "EML öffnen",
+  "Copy Id": "ID kopieren",
+  "Show More": "Mehr anzeigen",
+  "Show Less": "Weniger anzeigen",
+  "Email preview tabs": "E-Mail-Vorschau-Tabs",
+  "Mobile View": "Mobile Ansicht",
+  "Tablet View": "Tablet-Ansicht",
+  "Desktop View": "Desktop-Ansicht",
+  "Text Only": "Nur Text",
+  "Email Client Compatibility": "E-Mail-Client-Kompatibilität",
+  "Compatibility result": "Kompatibilitätsergebnis",
+  "Report Type": "Berichtstyp",
+  "Result": "Ergebnis",
+  "Client": "Client",
+  "attachment": "anhang",
+  "Email ID copied to clipboard": "E-Mail-ID in die Zwischenablage kopiert",
+  "Postie MCP Server": "Postie MCP-Server",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "Der Postie-MCP-Server ist nicht verfügbar, da dieser VS Code-Build die MCP-Erweiterungs-API nicht bereitstellt. Verwenden Sie VS Code 1.102 oder neuer.",
+  "Emails deleted!": "E-Mails gelöscht!",
+  "Error deleting email: {0}": "Fehler beim Löschen der E-Mail: {0}",
+  "Postie Email Server stopped!": "Postie-E-Mail-Server gestoppt!",
+  "Postie Email Server restarted!": "Postie-E-Mail-Server neu gestartet!",
+  "Postie MCP config updated in: {0}": "Postie-MCP-Konfiguration aktualisiert in: {0}",
+  "Postie MCP config updated for Codex in: {0}": "Postie-MCP-Konfiguration für Codex aktualisiert in: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "Postie-MCP-Konfiguration für Claude Code aktualisiert in: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "Der gespeicherte MCP-Speicherpfad existiert nicht: {0}. Bitte wählen Sie einen neuen aus.",
+  "Select the Postie storage folder to use for MCP": "Wählen Sie den Postie-Speicherordner für MCP aus",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie-Speicher"
+}

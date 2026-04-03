@@ -6,6 +6,7 @@ import {
   Uri,
   ViewColumn,
   env,
+  l10n,
 } from 'vscode'
 import { getUri } from '../utilities/getUri'
 import { Email } from '../types/Email'
@@ -54,7 +55,7 @@ export class EmailView {
         return
       } catch (err) {
         window.showErrorMessage(
-          'Failed to refresh the email panel. Reopening a new panel.',
+          l10n.t('Failed to refresh the email panel. Reopening a new panel.'),
         )
         try {
           existing.dispose()
@@ -108,7 +109,7 @@ export class EmailView {
 
     return /*html*/ `
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="${env.language}">
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,7 +140,7 @@ export class EmailView {
       }
     } catch (_error) {
       window.showWarningMessage(
-        'Email compatibility data could not be parsed. Showing empty results.',
+        l10n.t('Email compatibility data could not be parsed. Showing empty results.'),
       )
     }
 
@@ -175,6 +176,31 @@ export class EmailView {
       emailDataUrl,
       compatibilityRows,
       defaultTab: getConfig('defaultEmailView'),
+      strings: {
+        fromLabel: l10n.t('From'),
+        subjectLabel: l10n.t('Subject'),
+        toLabel: l10n.t('To'),
+        ccLabel: l10n.t('CC'),
+        bccLabel: l10n.t('Bcc'),
+        dateLabel: l10n.t('Date'),
+        attachmentsOneLabel: l10n.t('Attachment'),
+        attachmentsManyLabel: l10n.t('Attachments'),
+        sourceButtonLabel: l10n.t('Source'),
+        openEmlButtonLabel: l10n.t('Open Eml'),
+        copyIdButtonLabel: l10n.t('Copy Id'),
+        showMoreButtonLabel: l10n.t('Show More'),
+        showLessButtonLabel: l10n.t('Show Less'),
+        tabsAriaLabel: l10n.t('Email preview tabs'),
+        mobileTabLabel: l10n.t('Mobile View'),
+        tabletTabLabel: l10n.t('Tablet View'),
+        desktopTabLabel: l10n.t('Desktop View'),
+        textOnlyTabLabel: l10n.t('Text Only'),
+        compatibilityTabLabel: l10n.t('Email Client Compatibility'),
+        compatibilityTableAriaLabel: l10n.t('Compatibility result'),
+        compatibilityReportTypeHeader: l10n.t('Report Type'),
+        compatibilityResultHeader: l10n.t('Result'),
+        compatibilityClientHeader: l10n.t('Client'),
+      },
     }
   }
 
@@ -238,7 +264,7 @@ export class EmailView {
 
           case WebviewCommand.OpenAttachment:
             let fileName: string =
-              message.fileUrl.split('/').pop() ?? 'attachment'
+              message.fileUrl.split('/').pop() ?? l10n.t('attachment')
             openInNewEditor(fileName, Uri.parse(message.fileUrl))
             break
 
@@ -253,7 +279,7 @@ export class EmailView {
           case WebviewCommand.CopyId:
             const normalizedId = JSON.stringify(this.email.id)
             env.clipboard.writeText(normalizedId).then(() => {
-              window.showInformationMessage('Email ID copied to clipboard')
+              window.showInformationMessage(l10n.t('Email ID copied to clipboard'))
             })
             break
         }

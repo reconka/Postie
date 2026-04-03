@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 Csatlakozva a Postie kiszolgálóhoz.",
+  "Transporter not initialized": "A transporter nincs inicializálva",
+  "😵 Failed to connect as SMTP client: {0}": "😵 Nem sikerült SMTP kliensként csatlakozni: {0}",
+  "Open Email": "E-mail megnyitása",
+  "Server running on {0}:{1}  user={2}  pass={3}": "A kiszolgáló ezen fut: {0}:{1}  felhasználó={2}  jelszó={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "Feladó: {0}\nCímzett: {1}\nTárgy: {2}\nÉrkezett: {3}",
+  "Error creating file: {0}": "Hiba a fájl létrehozásakor: {0}",
+  "📮 Postie is listening on port {0}": "📮 A Postie a(z) {0} porton figyel.",
+  "An unknown error occurred while connecting to the SMTP server": "Ismeretlen hiba történt az SMTP-kiszolgálóhoz való csatlakozás közben",
+  "All emails deleted successfully.": "Az összes e-mail sikeresen törölve.",
+  "Email not found": "Az e-mail nem található",
+  "Error loading email: {0}": "Hiba az e-mail betöltésekor: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "Nincs tárgy",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "E-mail megnyitása",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "Új e-mail: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "Hiba a(z) {0} végrehajtásakor: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "A Postie MCP beállítása megszakítva. Nem történt változás.",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "Nem sikerült beállítani az MCP konfigurációt: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "Nem sikerült frissíteni az e-mail panelt. Új panel megnyitása.",
+  "Email compatibility data could not be parsed. Showing empty results.": "Az e-mail-kompatibilitási adatok nem elemezhetők. Üres eredmények megjelenítése.",
+  "From": "Feladó",
+  "Subject": "Tárgy",
+  "To": "Címzett",
+  "CC": "Másolat",
+  "Bcc": "Titkos másolat",
+  "Date": "Dátum",
+  "Attachment": "Melléklet",
+  "Attachments": "Mellékletek",
+  "Source": "Forrás",
+  "Open Eml": "EML megnyitása",
+  "Copy Id": "Azonosító másolása",
+  "Show More": "Több megjelenítése",
+  "Show Less": "Kevesebb megjelenítése",
+  "Email preview tabs": "E-mail előnézeti fülek",
+  "Mobile View": "Mobil nézet",
+  "Tablet View": "Táblagépes nézet",
+  "Desktop View": "Asztali nézet",
+  "Text Only": "Csak szöveg",
+  "Email Client Compatibility": "E-mail kliens kompatibilitás",
+  "Compatibility result": "Kompatibilitási eredmény",
+  "Report Type": "Jelentés típusa",
+  "Result": "Eredmény",
+  "Client": "Kliens",
+  "attachment": "melléklet",
+  "Email ID copied to clipboard": "Az e-mail azonosítója a vágólapra másolva",
+  "Postie MCP Server": "Postie MCP-kiszolgáló",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "A Postie MCP-kiszolgáló nem érhető el, mert ez a VS Code-kiadás nem teszi elérhetővé az MCP bővítmény API-t. Használja a VS Code 1.102-es vagy újabb verzióját.",
+  "Emails deleted!": "Az e-mailek törölve!",
+  "Error deleting email: {0}": "Hiba az e-mail törlésekor: {0}",
+  "Postie Email Server stopped!": "A Postie e-mail-kiszolgáló leállt!",
+  "Postie Email Server restarted!": "A Postie e-mail-kiszolgáló újraindult!",
+  "Postie MCP config updated in: {0}": "A Postie MCP konfiguráció frissítve itt: {0}",
+  "Postie MCP config updated for Codex in: {0}": "A Postie MCP konfiguráció frissítve a Codexhez itt: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "A Postie MCP konfiguráció frissítve a Claude Code-hoz itt: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "A mentett MCP-tárolási útvonal nem létezik: {0}. Kérjük, válasszon egy újat.",
+  "Select the Postie storage folder to use for MCP": "Válassza ki a Postie tárolómappáját az MCP-hez",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie tároló"
+}

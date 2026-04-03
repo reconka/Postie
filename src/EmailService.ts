@@ -1,4 +1,11 @@
-import { EventEmitter, Event, ExtensionContext, window, commands } from 'vscode'
+import {
+  EventEmitter,
+  Event,
+  ExtensionContext,
+  window,
+  commands,
+  l10n,
+} from 'vscode'
 import {
   SMTPServer,
   SMTPServerAuthentication,
@@ -115,7 +122,7 @@ export class EmailService {
     this.server.listen(getConfig('smtpServerPort') as number, () => {
       this.setServerState(true)
       window.showInformationMessage(
-        `📮 Postie is listening on port ${getConfig('smtpServerPort')} `
+        l10n.t('📮 Postie is listening on port {0}', getConfig('smtpServerPort'))
       )
     })
 
@@ -130,7 +137,7 @@ export class EmailService {
           window.showErrorMessage(error.message)
         } else {
           window.showErrorMessage(
-            'An unknown error occurred while connecting to the SMTP server'
+            l10n.t('An unknown error occurred while connecting to the SMTP server')
           )
         }
       }
@@ -184,18 +191,18 @@ export class EmailService {
     this._onEmailsChanged.fire()
 
     this.emailStorageManager.clearEmailStorage()
-    window.showInformationMessage('All emails deleted successfully.')
+    window.showInformationMessage(l10n.t('All emails deleted successfully.'))
   }
 
   public async getEmailDetails(emailId: string): Promise<Email> {
     try {
       const email = await this.emailStorageManager.getEmailFile(emailId)
       if (!email) {
-        throw new Error('Email not found')
+        throw new Error(l10n.t('Email not found'))
       }
       return email
     } catch (error) {
-      window.showErrorMessage(`Error loading email: ${error}`)
+      window.showErrorMessage(l10n.t('Error loading email: {0}', String(error)))
       throw error
     }
   }
@@ -214,7 +221,13 @@ export class EmailService {
       const email: Email = {
         id: parsedEmail.messageId || Date.now().toString(),
         receivedDateTime: new Date().toISOString(),
-        subject: parsedEmail.subject || 'No Subject',
+        subject:
+          parsedEmail.subject ||
+          l10n.t({
+            message: 'No Subject',
+            comment: ['Fallback email subject when a message has no subject.'],
+            args: [],
+          }),
         from: formatAddresses(parsedEmail.from),
         to: formatAddresses(parsedEmail.to),
         cc: formatAddresses(parsedEmail.cc),
@@ -245,13 +258,21 @@ export class EmailService {
       this.emailStorageManager.storeEmailFile(email)
 
       if (getConfig('showNewEmailNotification') as boolean) {
+        const openEmailActionLabel = l10n.t({
+          message: 'Open Email',
+          comment: [
+            'Button label in new email notification that opens the received email.',
+          ],
+          args: [],
+        })
+
         window
           .showInformationMessage(
-            `New email: ${emailSummary.subject}`,
-            'Open Email'
+            l10n.t('New email: {0}', emailSummary.subject),
+            openEmailActionLabel
           )
           .then((value) => {
-            if (value === 'Open Email') {
+            if (value === openEmailActionLabel) {
               commands.executeCommand('postie.openEmail', {
                 email: emailSummary,
               })

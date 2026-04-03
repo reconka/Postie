@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 تم الاتصال بخادم Postie.",
+  "Transporter not initialized": "لم تتم تهيئة الناقل",
+  "😵 Failed to connect as SMTP client: {0}": "😵 فشل الاتصال كعميل SMTP: {0}",
+  "Open Email": "فتح البريد الإلكتروني",
+  "Server running on {0}:{1}  user={2}  pass={3}": "الخادم يعمل على {0}:{1}  المستخدم={2}  كلمة المرور={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "من: {0}\nإلى: {1}\nالموضوع: {2}\nتم الاستلام: {3}",
+  "Error creating file: {0}": "خطأ في إنشاء الملف: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie يستمع على المنفذ {0}",
+  "An unknown error occurred while connecting to the SMTP server": "حدث خطأ غير معروف أثناء الاتصال بخادم SMTP",
+  "All emails deleted successfully.": "تم حذف جميع رسائل البريد الإلكتروني بنجاح.",
+  "Email not found": "لم يتم العثور على البريد الإلكتروني",
+  "Error loading email: {0}": "خطأ في تحميل البريد الإلكتروني: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "بدون موضوع",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "فتح البريد الإلكتروني",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "بريد إلكتروني جديد: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "خطأ في تنفيذ {0}: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "تم إلغاء إعداد Postie MCP. لم يتم إجراء أي تغييرات.",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "فشل إعداد تهيئة MCP: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "فشل تحديث لوحة البريد الإلكتروني. سيتم فتح لوحة جديدة.",
+  "Email compatibility data could not be parsed. Showing empty results.": "تعذر تحليل بيانات توافق البريد الإلكتروني. سيتم عرض نتائج فارغة.",
+  "From": "من",
+  "Subject": "الموضوع",
+  "To": "إلى",
+  "CC": "نسخة إلى",
+  "Bcc": "نسخة مخفية",
+  "Date": "التاريخ",
+  "Attachment": "مرفق",
+  "Attachments": "مرفقات",
+  "Source": "المصدر",
+  "Open Eml": "فتح EML",
+  "Copy Id": "نسخ المعرّف",
+  "Show More": "عرض المزيد",
+  "Show Less": "عرض أقل",
+  "Email preview tabs": "علامات تبويب معاينة البريد الإلكتروني",
+  "Mobile View": "عرض الجوال",
+  "Tablet View": "عرض الجهاز اللوحي",
+  "Desktop View": "عرض سطح المكتب",
+  "Text Only": "نص فقط",
+  "Email Client Compatibility": "التوافق مع عملاء البريد الإلكتروني",
+  "Compatibility result": "نتيجة التوافق",
+  "Report Type": "نوع التقرير",
+  "Result": "النتيجة",
+  "Client": "العميل",
+  "attachment": "مرفق",
+  "Email ID copied to clipboard": "تم نسخ معرّف البريد الإلكتروني إلى الحافظة",
+  "Postie MCP Server": "خادم Postie MCP",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "خادم Postie MCP غير متاح لأن هذا الإصدار من VS Code لا يوفّر واجهة برمجة تطبيقات إضافة MCP. استخدم VS Code 1.102 أو أحدث.",
+  "Emails deleted!": "تم حذف رسائل البريد الإلكتروني!",
+  "Error deleting email: {0}": "خطأ في حذف البريد الإلكتروني: {0}",
+  "Postie Email Server stopped!": "تم إيقاف خادم البريد الإلكتروني Postie!",
+  "Postie Email Server restarted!": "تمت إعادة تشغيل خادم البريد الإلكتروني Postie!",
+  "Postie MCP config updated in: {0}": "تم تحديث تهيئة Postie MCP في: {0}",
+  "Postie MCP config updated for Codex in: {0}": "تم تحديث تهيئة Postie MCP لـ Codex في: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "تم تحديث تهيئة Postie MCP لـ Claude Code في: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "مسار تخزين MCP المحفوظ غير موجود: {0}. يرجى اختيار مسار جديد.",
+  "Select the Postie storage folder to use for MCP": "اختر مجلد تخزين Postie لاستخدامه مع MCP",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "تخزين Postie"
+}

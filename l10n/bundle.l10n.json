@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 Connected to Postie server.",
+  "Transporter not initialized": "Transporter not initialized",
+  "😵 Failed to connect as SMTP client: {0}": "😵 Failed to connect as SMTP client: {0}",
+  "Open Email": "Open Email",
+  "Server running on {0}:{1}  user={2}  pass={3}": "Server running on {0}:{1}  user={2}  pass={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}",
+  "Error creating file: {0}": "Error creating file: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie is listening on port {0}",
+  "An unknown error occurred while connecting to the SMTP server": "An unknown error occurred while connecting to the SMTP server",
+  "All emails deleted successfully.": "All emails deleted successfully.",
+  "Email not found": "Email not found",
+  "Error loading email: {0}": "Error loading email: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "No Subject",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "Open Email",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "New email: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "Error executing {0}: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "Postie MCP setup cancelled. No changes were made.",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "Failed to set up MCP config: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "Failed to refresh the email panel. Reopening a new panel.",
+  "Email compatibility data could not be parsed. Showing empty results.": "Email compatibility data could not be parsed. Showing empty results.",
+  "From": "From",
+  "Subject": "Subject",
+  "To": "To",
+  "CC": "CC",
+  "Bcc": "Bcc",
+  "Date": "Date",
+  "Attachment": "Attachment",
+  "Attachments": "Attachments",
+  "Source": "Source",
+  "Open Eml": "Open Eml",
+  "Copy Id": "Copy Id",
+  "Show More": "Show More",
+  "Show Less": "Show Less",
+  "Email preview tabs": "Email preview tabs",
+  "Mobile View": "Mobile View",
+  "Tablet View": "Tablet View",
+  "Desktop View": "Desktop View",
+  "Text Only": "Text Only",
+  "Email Client Compatibility": "Email Client Compatibility",
+  "Compatibility result": "Compatibility result",
+  "Report Type": "Report Type",
+  "Result": "Result",
+  "Client": "Client",
+  "attachment": "attachment",
+  "Email ID copied to clipboard": "Email ID copied to clipboard",
+  "Postie MCP Server": "Postie MCP Server",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.",
+  "Emails deleted!": "Emails deleted!",
+  "Error deleting email: {0}": "Error deleting email: {0}",
+  "Postie Email Server stopped!": "Postie Email Server stopped!",
+  "Postie Email Server restarted!": "Postie Email Server restarted!",
+  "Postie MCP config updated in: {0}": "Postie MCP config updated in: {0}",
+  "Postie MCP config updated for Codex in: {0}": "Postie MCP config updated for Codex in: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "Postie MCP config updated for Claude Code in: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "Saved MCP storage path does not exist: {0}. Please select a new one.",
+  "Select the Postie storage folder to use for MCP": "Select the Postie storage folder to use for MCP",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie storage"
+}

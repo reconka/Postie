@@ -4,6 +4,7 @@ import {
   commands,
   workspace,
   ConfigurationTarget,
+  l10n,
 } from 'vscode'
 import * as fs from 'fs'
 import { EmailView } from '../panels/EmailView'
@@ -26,6 +27,11 @@ import {
   StorageSelectionError,
   choosePostieStoragePath,
 } from '../mcp/storageSelection'
+import {
+  getCommandExecutionFailedMessage,
+  getMcpSetupCancelledMessage,
+  getMcpSetupFailedMessage,
+} from '../utilities/messages'
 
 export function registerCommands(
   context: ExtensionContext,
@@ -41,14 +47,14 @@ export function registerCommands(
           try {
             await callback(...args)
           } catch (error) {
-            window.showErrorMessage(`Error executing ${name}: ${error}`)
+            window.showErrorMessage(getCommandExecutionFailedMessage(name, error))
           }
         }
       : (...args: any[]) => {
           try {
             callback(...args)
           } catch (error) {
-            window.showErrorMessage(`Error executing ${name}: ${error}`)
+            window.showErrorMessage(getCommandExecutionFailedMessage(name, error))
           }
         }
 
@@ -57,7 +63,7 @@ export function registerCommands(
 
   registerCommand('postie.deleteEmailDetails', (): void => {
     emailService.deleteEmailSummaries()
-    window.showInformationMessage('Emails deleted!')
+    window.showInformationMessage(l10n.t('Emails deleted!'))
   })
 
   registerCommand(
@@ -66,14 +72,14 @@ export function registerCommands(
       try {
         emailService.deleteEmailDetails(node.email.id)
       } catch (error) {
-        window.showErrorMessage(`Error deleting email: ${error}`)
+        window.showErrorMessage(l10n.t('Error deleting email: {0}', String(error)))
       }
     }
   )
 
   registerCommand('postie.stopServer', async (): Promise<void> => {
     await emailService.stopServer()
-    window.showInformationMessage('Postie Email Server stopped!')
+    window.showInformationMessage(l10n.t('Postie Email Server stopped!'))
   }, true)
 
   registerCommand(
@@ -82,7 +88,7 @@ export function registerCommands(
       await emailService.stopServer()
       emailService.startServer()
 
-      window.showInformationMessage('Postie Email Server restarted!')
+      window.showInformationMessage(l10n.t('Postie Email Server restarted!'))
     },
     true
   )
@@ -127,20 +133,20 @@ export function registerCommands(
           postieEntry,
         })
 
-        const message = `Postie MCP config updated in: ${written.join(', ')}`
+        const message = l10n.t(
+          'Postie MCP config updated in: {0}',
+          written.join(', ')
+        )
         window.showInformationMessage(message)
       } catch (error) {
         if (error instanceof StorageSelectionError) {
           if (error.code === 'CANCELLED') {
-            window.showInformationMessage(
-              'Postie MCP setup cancelled. No changes were made.'
-            )
+            window.showInformationMessage(getMcpSetupCancelledMessage())
             return
           }
         }
 
-        const message = error instanceof Error ? error.message : String(error)
-        window.showErrorMessage(`Failed to set up MCP config: ${message}`)
+        window.showErrorMessage(getMcpSetupFailedMessage(error))
       }
     },
     true
@@ -180,7 +186,10 @@ export function registerCommands(
         })
 
         window.showInformationMessage(
-          `Postie MCP config updated for Codex in: ${written.join(', ')}`
+          l10n.t(
+            'Postie MCP config updated for Codex in: {0}',
+            written.join(', ')
+          )
         )
       } catch (error) {
         handleMcpSetupError(error)
@@ -224,7 +233,10 @@ export function registerCommands(
         })
 
         window.showInformationMessage(
-          `Postie MCP config updated for Claude Code in: ${written.join(', ')}`
+          l10n.t(
+            'Postie MCP config updated for Claude Code in: {0}',
+            written.join(', ')
+          )
         )
       } catch (error) {
         handleMcpSetupError(error)
@@ -258,7 +270,10 @@ async function resolveMcpStoragePath(): Promise<string> {
   const savedPathExists = savedPath ? fs.existsSync(savedPath) : false
   if (savedPath && !savedPathExists) {
     window.showWarningMessage(
-      `Saved MCP storage path does not exist: ${savedPath}. Please select a new one.`
+      l10n.t(
+        'Saved MCP storage path does not exist: {0}. Please select a new one.',
+        savedPath
+      )
     )
   }
 
@@ -269,7 +284,7 @@ async function resolveMcpStoragePath(): Promise<string> {
     select: async (paths) => {
       const items = buildStorageQuickPickItems(paths)
       const choice = await window.showQuickPick(items, {
-        placeHolder: 'Select the Postie storage folder to use for MCP',
+        placeHolder: l10n.t('Select the Postie storage folder to use for MCP'),
       })
       return choice?.path
     },
@@ -307,15 +322,12 @@ function readMcpOptionalSettings(): {
 function handleMcpSetupError(error: unknown) {
   if (error instanceof StorageSelectionError) {
     if (error.code === 'CANCELLED') {
-      window.showInformationMessage(
-        'Postie MCP setup cancelled. No changes were made.'
-      )
+      window.showInformationMessage(getMcpSetupCancelledMessage())
       return
     }
   }
 
-  const message = error instanceof Error ? error.message : String(error)
-  window.showErrorMessage(`Failed to set up MCP config: ${message}`)
+  window.showErrorMessage(getMcpSetupFailedMessage(error))
 }
 
 function buildStorageQuickPickItems(
@@ -334,7 +346,7 @@ function buildStorageQuickPickItems(
   return labels.map((item) => ({
     label:
       counts[item.label] > 1
-        ? `${item.label} (${item.path})`
+        ? l10n.t('{0} ({1})', item.label, item.path)
         : item.label,
     description: item.path,
     path: item.path,
@@ -344,19 +356,19 @@ function buildStorageQuickPickItems(
 function getStorageLabel(storagePath: string): string {
   const normalized = storagePath.replace(/\\/g, '/')
   if (normalized.includes('/Cursor - Insiders/')) {
-    return 'Cursor Insiders'
+    return l10n.t('Cursor Insiders')
   }
   if (normalized.includes('/Cursor/')) {
-    return 'Cursor'
+    return l10n.t('Cursor')
   }
   if (normalized.includes('/Code - Insiders/')) {
-    return 'VS Code Insiders'
+    return l10n.t('VS Code Insiders')
   }
   if (normalized.includes('/Code/')) {
-    return 'VS Code'
+    return l10n.t('VS Code')
   }
   if (normalized.includes('/VSCodium/')) {
-    return 'VSCodium'
+    return l10n.t('VSCodium')
   }
-  return 'Postie storage'
+  return l10n.t('Postie storage')
 }

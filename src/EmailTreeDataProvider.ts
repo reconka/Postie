@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { l10n } from 'vscode'
 import type { EmailTreeItem } from './types/EmailService'
 import type { EmailService } from './types/EmailService'
 import { formatRelative } from 'date-fns/formatRelative'
@@ -40,7 +41,7 @@ export class EmailTreeDataProvider
     treeItem.tooltip = this.generateTooltip(element)
     treeItem.command = {
       command: 'postie.openEmail',
-      title: 'Open Email',
+      title: l10n.t('Open Email'),
       arguments: [element],
     }
     return treeItem
@@ -67,7 +68,13 @@ export class EmailTreeDataProvider
       const maskedPassword = this.maskCredential(smtp.password)
       const infoItem: EmailTreeItem = {
         type: 'server-info',
-        label: `Server running on ${smtp.host}:${smtp.port}  user=${smtp.username}  pass=${maskedPassword}`,
+        label: l10n.t(
+          'Server running on {0}:{1}  user={2}  pass={3}',
+          smtp.host,
+          smtp.port,
+          smtp.username,
+          maskedPassword
+        ),
       } as EmailTreeItem
 
       return Promise.resolve([infoItem])
@@ -92,7 +99,13 @@ export class EmailTreeDataProvider
       new Date(),
       { locale: enGB }
     )
-    return `From: ${element.email.from}\nTo: ${element.email.to}\nSubject: ${element.email.subject}\nReceived: ${receivedDateTime}`
+    return l10n.t(
+      'From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}',
+      element.email.from,
+      element.email.to,
+      element.email.subject,
+      receivedDateTime
+    )
   }
 
   private maskCredential(value: string): string {

@@ -14,6 +14,7 @@ const window = {
   createStatusBarItem: jest.fn(() => ({
     show: jest.fn(),
   })),
+  showInformationMessage: jest.fn(),
   showErrorMessage: jest.fn(),
   showWarningMessage: jest.fn(),
   createTextEditorDecorationType: jest.fn(),
@@ -46,6 +47,28 @@ const commands = {
   executeCommand: jest.fn(),
 }
 
+const l10n = {
+  t: (messageOrOptions, ...args) => {
+    const options =
+      typeof messageOrOptions === 'string'
+        ? { message: messageOrOptions, args }
+        : messageOrOptions
+
+    const values = options.args ?? args
+    if (Array.isArray(values)) {
+      return options.message.replace(
+        /\{(\d+)\}/g,
+        (_, idx) => String(values[Number(idx)] ?? '')
+      )
+    }
+
+    return options.message.replace(
+      /\{([^}]+)\}/g,
+      (_, key) => String(values[key] ?? '')
+    )
+  },
+}
+
 const vscode = {
   EventEmitter,
   languages,
@@ -59,6 +82,7 @@ const vscode = {
   DiagnosticSeverity,
   debug,
   commands,
+  l10n,
 }
 
 module.exports = vscode

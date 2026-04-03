@@ -1,12 +1,14 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
+import { l10n } from 'vscode'
 
 const MCP_PROVIDER_ID = 'postie.mcp-server'
-const MCP_SERVER_LABEL = 'Postie MCP Server'
 
 export function registerMcpServerDefinitionProvider(
   context: vscode.ExtensionContext
 ) {
+  const mcpServerLabel = l10n.t('Postie MCP Server')
+
   const api = vscode as unknown as {
     lm?: {
       registerMcpServerDefinitionProvider: (
@@ -32,7 +34,9 @@ export function registerMcpServerDefinitionProvider(
     !McpStdioServerDefinition
   ) {
     void vscode.window.showWarningMessage(
-      'Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.'
+      l10n.t(
+        'Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.'
+      )
     )
     return
   }
@@ -45,7 +49,7 @@ export function registerMcpServerDefinitionProvider(
     provideMcpServerDefinitions: async () => {
       const mcpEntry = path.join(context.extensionPath, 'out', 'mcpServer.js')
       const definition = new McpStdioServerDefinition(
-        MCP_SERVER_LABEL,
+        mcpServerLabel,
         process.execPath,
         [mcpEntry],
         {

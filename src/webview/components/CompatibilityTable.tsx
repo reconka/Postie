@@ -1,5 +1,5 @@
 import React from 'react'
-import type { CompatibilityRow } from '../../types/WebviewContracts'
+import type { CompatibilityRow, WebviewStrings } from '../../types/WebviewContracts'
 import {
   VscodeTable,
   VscodeTableHeader,
@@ -11,16 +11,17 @@ import {
 
 type CompatibilityTableProps = {
   rows: CompatibilityRow[]
+  strings: WebviewStrings
 }
 
-export function CompatibilityTable({ rows }: CompatibilityTableProps) {
+export function CompatibilityTable({ rows, strings }: CompatibilityTableProps) {
   return (
-    <VscodeTable className="postie-table" aria-label="Compatibility result">
+    <VscodeTable className="postie-table" aria-label={strings.compatibilityTableAriaLabel}>
       <VscodeTableHeader>
         <VscodeTableRow>
-          <VscodeTableHeaderCell>Report Type</VscodeTableHeaderCell>
-          <VscodeTableHeaderCell>Result</VscodeTableHeaderCell>
-          <VscodeTableHeaderCell>Client</VscodeTableHeaderCell>
+          <VscodeTableHeaderCell>{strings.compatibilityReportTypeHeader}</VscodeTableHeaderCell>
+          <VscodeTableHeaderCell>{strings.compatibilityResultHeader}</VscodeTableHeaderCell>
+          <VscodeTableHeaderCell>{strings.compatibilityClientHeader}</VscodeTableHeaderCell>
         </VscodeTableRow>
       </VscodeTableHeader>
       <VscodeTableBody>

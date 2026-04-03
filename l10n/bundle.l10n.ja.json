@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 Postie サーバーに接続しました。",
+  "Transporter not initialized": "トランスポーターが初期化されていません",
+  "😵 Failed to connect as SMTP client: {0}": "😵 SMTP クライアントとして接続できませんでした: {0}",
+  "Open Email": "メールを開く",
+  "Server running on {0}:{1}  user={2}  pass={3}": "サーバーは {0}:{1} で実行中です  user={2}  pass={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "差出人: {0}\n宛先: {1}\n件名: {2}\n受信日時: {3}",
+  "Error creating file: {0}": "ファイルの作成中にエラーが発生しました: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie はポート {0} で待機しています",
+  "An unknown error occurred while connecting to the SMTP server": "SMTP サーバーへの接続中に不明なエラーが発生しました",
+  "All emails deleted successfully.": "すべてのメールを削除しました。",
+  "Email not found": "メールが見つかりません",
+  "Error loading email: {0}": "メールの読み込み中にエラーが発生しました: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "件名なし",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "メールを開く",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "新着メール: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "{0} の実行中にエラーが発生しました: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "Postie MCP の設定はキャンセルされました。変更はありませんでした。",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "MCP 設定のセットアップに失敗しました: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "メールパネルの更新に失敗しました。新しいパネルを再度開きます。",
+  "Email compatibility data could not be parsed. Showing empty results.": "メール互換性データを解析できませんでした。空の結果を表示します。",
+  "From": "差出人",
+  "Subject": "件名",
+  "To": "宛先",
+  "CC": "CC",
+  "Bcc": "Bcc",
+  "Date": "日付",
+  "Attachment": "添付ファイル",
+  "Attachments": "添付ファイル",
+  "Source": "ソース",
+  "Open Eml": "EML を開く",
+  "Copy Id": "ID をコピー",
+  "Show More": "さらに表示",
+  "Show Less": "折りたたむ",
+  "Email preview tabs": "メールプレビュータブ",
+  "Mobile View": "モバイル表示",
+  "Tablet View": "タブレット表示",
+  "Desktop View": "デスクトップ表示",
+  "Text Only": "テキストのみ",
+  "Email Client Compatibility": "メールクライアント互換性",
+  "Compatibility result": "互換性結果",
+  "Report Type": "レポート種類",
+  "Result": "結果",
+  "Client": "クライアント",
+  "attachment": "添付ファイル",
+  "Email ID copied to clipboard": "メール ID をクリップボードにコピーしました",
+  "Postie MCP Server": "Postie MCP サーバー",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "この VS Code ビルドは MCP 拡張 API を公開していないため、Postie MCP サーバーは利用できません。VS Code 1.102 以降を使用してください。",
+  "Emails deleted!": "メールを削除しました！",
+  "Error deleting email: {0}": "メールの削除中にエラーが発生しました: {0}",
+  "Postie Email Server stopped!": "Postie メールサーバーを停止しました！",
+  "Postie Email Server restarted!": "Postie メールサーバーを再起動しました！",
+  "Postie MCP config updated in: {0}": "Postie MCP 設定を更新しました: {0}",
+  "Postie MCP config updated for Codex in: {0}": "Codex 用の Postie MCP 設定を更新しました: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "Claude Code 用の Postie MCP 設定を更新しました: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "保存された MCP ストレージパスが存在しません: {0}。新しいパスを選択してください。",
+  "Select the Postie storage folder to use for MCP": "MCP に使用する Postie のストレージフォルダーを選択してください",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie ストレージ"
+}

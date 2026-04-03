@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 Postie 서버에 연결되었습니다.",
+  "Transporter not initialized": "전송기가 초기화되지 않았습니다",
+  "😵 Failed to connect as SMTP client: {0}": "😵 SMTP 클라이언트로 연결하지 못했습니다: {0}",
+  "Open Email": "이메일 열기",
+  "Server running on {0}:{1}  user={2}  pass={3}": "서버가 {0}:{1}에서 실행 중입니다  사용자={2}  비밀번호={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "보낸 사람: {0}\n받는 사람: {1}\n제목: {2}\n수신: {3}",
+  "Error creating file: {0}": "파일 생성 중 오류가 발생했습니다: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie가 포트 {0}에서 수신 중입니다",
+  "An unknown error occurred while connecting to the SMTP server": "SMTP 서버에 연결하는 동안 알 수 없는 오류가 발생했습니다",
+  "All emails deleted successfully.": "모든 이메일이 성공적으로 삭제되었습니다.",
+  "Email not found": "이메일을 찾을 수 없습니다",
+  "Error loading email: {0}": "이메일을 불러오는 중 오류가 발생했습니다: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "제목 없음",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "이메일 열기",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "새 이메일: {0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "{0} 실행 중 오류가 발생했습니다: {1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "Postie MCP 설정이 취소되었습니다. 변경 사항은 적용되지 않았습니다.",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "MCP 구성을 설정하지 못했습니다: {0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "이메일 패널을 새로 고치지 못했습니다. 새 패널을 다시 엽니다.",
+  "Email compatibility data could not be parsed. Showing empty results.": "이메일 호환성 데이터를 파싱하지 못했습니다. 빈 결과를 표시합니다.",
+  "From": "보낸 사람",
+  "Subject": "제목",
+  "To": "받는 사람",
+  "CC": "참조",
+  "Bcc": "숨은 참조",
+  "Date": "날짜",
+  "Attachment": "첨부 파일",
+  "Attachments": "첨부 파일",
+  "Source": "원본",
+  "Open Eml": "EML 열기",
+  "Copy Id": "ID 복사",
+  "Show More": "더 보기",
+  "Show Less": "간단히 보기",
+  "Email preview tabs": "이메일 미리보기 탭",
+  "Mobile View": "모바일 보기",
+  "Tablet View": "태블릿 보기",
+  "Desktop View": "데스크톱 보기",
+  "Text Only": "텍스트만",
+  "Email Client Compatibility": "이메일 클라이언트 호환성",
+  "Compatibility result": "호환성 결과",
+  "Report Type": "보고서 유형",
+  "Result": "결과",
+  "Client": "클라이언트",
+  "attachment": "첨부 파일",
+  "Email ID copied to clipboard": "이메일 ID가 클립보드에 복사되었습니다",
+  "Postie MCP Server": "Postie MCP 서버",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "이 VS Code 빌드는 MCP 확장 API를 제공하지 않으므로 Postie MCP 서버를 사용할 수 없습니다. VS Code 1.102 이상을 사용하세요.",
+  "Emails deleted!": "이메일이 삭제되었습니다!",
+  "Error deleting email: {0}": "이메일 삭제 중 오류가 발생했습니다: {0}",
+  "Postie Email Server stopped!": "Postie 이메일 서버가 중지되었습니다!",
+  "Postie Email Server restarted!": "Postie 이메일 서버가 다시 시작되었습니다!",
+  "Postie MCP config updated in: {0}": "Postie MCP 구성이 다음 위치에서 업데이트되었습니다: {0}",
+  "Postie MCP config updated for Codex in: {0}": "Codex용 Postie MCP 구성이 다음 위치에서 업데이트되었습니다: {0}",
+  "Postie MCP config updated for Claude Code in: {0}": "Claude Code용 Postie MCP 구성이 다음 위치에서 업데이트되었습니다: {0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "저장된 MCP 저장소 경로가 존재하지 않습니다: {0}. 새 경로를 선택하세요.",
+  "Select the Postie storage folder to use for MCP": "MCP에 사용할 Postie 저장 폴더를 선택하세요",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie 저장소"
+}

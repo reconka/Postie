@@ -1,0 +1,90 @@
+{
+  "🎉 Connected to Postie server.": "🎉 已连接到 Postie 服务器。",
+  "Transporter not initialized": "传输器未初始化",
+  "😵 Failed to connect as SMTP client: {0}": "😵 作为 SMTP 客户端连接失败: {0}",
+  "Open Email": "打开邮件",
+  "Server running on {0}:{1}  user={2}  pass={3}": "服务器运行在 {0}:{1}  用户={2}  密码={3}",
+  "From: {0}\nTo: {1}\nSubject: {2}\nReceived: {3}": "发件人: {0}\n收件人: {1}\n主题: {2}\n接收时间: {3}",
+  "Error creating file: {0}": "创建文件时出错: {0}",
+  "📮 Postie is listening on port {0}": "📮 Postie 正在监听端口 {0}",
+  "An unknown error occurred while connecting to the SMTP server": "连接 SMTP 服务器时发生未知错误",
+  "All emails deleted successfully.": "所有邮件已成功删除。",
+  "Email not found": "未找到邮件",
+  "Error loading email: {0}": "加载邮件时出错: {0}",
+  "No Subject/Fallback email subject when a message has no subject.": {
+    "message": "无主题",
+    "comment": [
+      "Fallback email subject when a message has no subject."
+    ]
+  },
+  "Open Email/Button label in new email notification that opens the received email.": {
+    "message": "打开邮件",
+    "comment": [
+      "Button label in new email notification that opens the received email."
+    ]
+  },
+  "New email: {0}": "新邮件：{0}",
+  "Error executing {0}: {1}/Shown when running a VS Code command fails.": {
+    "message": "执行 {0} 时出错：{1}",
+    "comment": [
+      "Shown when running a VS Code command fails."
+    ]
+  },
+  "Postie MCP setup cancelled. No changes were made./Shown when a user cancels MCP setup.": {
+    "message": "Postie MCP 设置已取消。未进行任何更改。",
+    "comment": [
+      "Shown when a user cancels MCP setup."
+    ]
+  },
+  "Failed to set up MCP config: {0}/Shown when MCP setup fails with an error.": {
+    "message": "设置 MCP 配置失败：{0}",
+    "comment": [
+      "Shown when MCP setup fails with an error."
+    ]
+  },
+  "Failed to refresh the email panel. Reopening a new panel.": "刷新邮件面板失败。正在重新打开新面板。",
+  "Email compatibility data could not be parsed. Showing empty results.": "无法解析邮件兼容性数据。将显示空结果。",
+  "From": "发件人",
+  "Subject": "主题",
+  "To": "收件人",
+  "CC": "抄送",
+  "Bcc": "密送",
+  "Date": "日期",
+  "Attachment": "附件",
+  "Attachments": "附件",
+  "Source": "源代码",
+  "Open Eml": "打开 EML",
+  "Copy Id": "复制 ID",
+  "Show More": "显示更多",
+  "Show Less": "显示更少",
+  "Email preview tabs": "邮件预览选项卡",
+  "Mobile View": "移动端视图",
+  "Tablet View": "平板视图",
+  "Desktop View": "桌面视图",
+  "Text Only": "仅文本",
+  "Email Client Compatibility": "邮件客户端兼容性",
+  "Compatibility result": "兼容性结果",
+  "Report Type": "报告类型",
+  "Result": "结果",
+  "Client": "客户端",
+  "attachment": "附件",
+  "Email ID copied to clipboard": "邮件 ID 已复制到剪贴板",
+  "Postie MCP Server": "Postie MCP 服务器",
+  "Postie MCP server is unavailable because this VS Code build does not expose the MCP extension API. Use VS Code 1.102 or newer.": "Postie MCP 服务器不可用，因为此 VS Code 版本未公开 MCP 扩展 API。请使用 VS Code 1.102 或更新版本。",
+  "Emails deleted!": "邮件已删除！",
+  "Error deleting email: {0}": "删除邮件时出错：{0}",
+  "Postie Email Server stopped!": "Postie 邮件服务器已停止！",
+  "Postie Email Server restarted!": "Postie 邮件服务器已重启！",
+  "Postie MCP config updated in: {0}": "Postie MCP 配置已更新到：{0}",
+  "Postie MCP config updated for Codex in: {0}": "用于 Codex 的 Postie MCP 配置已更新到：{0}",
+  "Postie MCP config updated for Claude Code in: {0}": "用于 Claude Code 的 Postie MCP 配置已更新到：{0}",
+  "Saved MCP storage path does not exist: {0}. Please select a new one.": "已保存的 MCP 存储路径不存在：{0}。请选择新的路径。",
+  "Select the Postie storage folder to use for MCP": "选择用于 MCP 的 Postie 存储文件夹",
+  "{0} ({1})": "{0} ({1})",
+  "Cursor Insiders": "Cursor Insiders",
+  "Cursor": "Cursor",
+  "VS Code Insiders": "VS Code Insiders",
+  "VS Code": "VS Code",
+  "VSCodium": "VSCodium",
+  "Postie storage": "Postie 存储"
+}
