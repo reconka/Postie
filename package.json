@@ -28,7 +28,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "1.1.12",
+  "version": "1.1.13",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
@@ -406,7 +406,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.28.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@types/mailparser": "^3.4.6",
     "@types/smtp-server": "^3.5.12",
     "@vscode-elements/react-elements": "^1.15.1",
@@ -422,6 +422,11 @@
     "sanitize-html": "^2.17.2",
     "smtp-server": "^3.18.3",
     "zod": "^4.3.6"
+  },
+  "overrides": {
+    "@modelcontextprotocol/sdk": {
+      "@hono/node-server": "2.0.11"
+    }
   },
   "l10n": "./l10n"
 }
