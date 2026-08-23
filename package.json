@@ -426,7 +426,8 @@
   "overrides": {
     "@modelcontextprotocol/sdk": {
       "@hono/node-server": "2.0.11"
-    }
+    },
+    "deepmerge-ts": "^8.0.0"
   },
   "l10n": "./l10n"
 }
