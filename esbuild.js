@@ -96,6 +96,15 @@ const webviewConfig = {
         webviewContext.watch(),
       ])
 
+      // watch() starts the watchers without waiting for the initial builds.
+      // Only release VS Code's preLaunchTask once every bundle is ready.
+      await Promise.all([
+        extensionContext.rebuild(),
+        mcpServerContext.rebuild(),
+        mcpCliContext.rebuild(),
+        webviewContext.rebuild(),
+      ])
+
       const mediaDir = path.join(process.cwd(), 'src', 'media')
       let rebuildingMedia = false
       let mediaRebuildPending = false
@@ -123,7 +132,7 @@ const webviewConfig = {
         void rebuildWebviewForMediaChange()
       })
 
-      console.log('[watch] watching for changes')
+      console.log('[watch] build finished, watching for changes')
 
       const stopWatching = async () => {
         mediaWatcher.close()
