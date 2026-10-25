@@ -1,9 +1,9 @@
-import nodemailer from 'nodemailer'
+import nodemailer, { type Transporter } from 'nodemailer'
 import { window, l10n } from 'vscode'
 import { getConfig } from './utilities/getConfig'
 
 export class SmtpConnectionManager {
-  private transporter: nodemailer.Transporter | null = null
+  private transporter: Transporter | null = null
 
   constructor(private readonly port: number) {}
 

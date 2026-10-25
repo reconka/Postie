@@ -28,7 +28,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "1.1.17",
+  "version": "1.1.18",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
@@ -415,7 +415,7 @@
     "doiuse-email": "^0.4.1",
     "esbuild-plugin-copy": "^2.1.1",
     "mailparser": "^3.9.6",
-    "nodemailer": "^9.1.1",
+    "nodemailer": "^10.2.1",
     "playwright": "^1.58.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
