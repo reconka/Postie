@@ -18,6 +18,7 @@ import { getConfig } from './utilities/getConfig'
 import { formatDateToTime, formatAddresses } from './utilities/formatters'
 import { simpleParser, ParsedMail, Attachment } from 'mailparser'
 import { SmtpConnectionManager } from './SMTPConnectionManager'
+import { randomUUID } from 'crypto'
 
 export interface ServerConnectionInfo {
   host: string
@@ -217,9 +218,11 @@ export class EmailService {
   private async handleNewEmail(rawEmail: Buffer): Promise<void> {
     try {
       const parsedEmail: ParsedMail = await simpleParser(rawEmail)
+      const id = randomUUID()
 
       const email: Email = {
-        id: parsedEmail.messageId || Date.now().toString(),
+        id,
+        messageId: parsedEmail.messageId,
         receivedDateTime: new Date().toISOString(),
         subject:
           parsedEmail.subject ||
@@ -238,7 +241,7 @@ export class EmailService {
         attachments: parsedEmail.attachments.map((attachment: Attachment) => ({
           contentType: attachment.contentType,
           fileUrl: this.emailStorageManager.storeAttachments(
-            parsedEmail.messageId || Date.now().toString(),
+            id,
             attachment
           ),
           fileName: attachment.filename || '',

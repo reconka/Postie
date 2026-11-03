@@ -3,6 +3,7 @@ import { EmailStorageManager } from '../EmailStorageManager'
 import { SmtpConnectionManager } from '../SMTPConnectionManager'
 import { SMTPServer } from 'smtp-server'
 import * as vscode from 'vscode'
+import { simpleParser, ParsedMail } from 'mailparser'
 
 jest.mock('vscode')
 jest.mock('smtp-server')
@@ -132,5 +133,74 @@ describe('EmailService', () => {
     emailService.markEmailAsRead('1')
 
     expect((emailService as any).emails[0].opened).toBe(true)
+  })
+})
+
+describe('received email storage identity', () => {
+  const uuidPattern =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+  test.each(['<123.0.456@host>', undefined])(
+    'uses a unique UUID for each receipt with Message-ID %s',
+    async (messageId) => {
+      const service = new EmailService({
+        globalStorageUri: vscode.Uri.file('/mock/storage'),
+        subscriptions: [],
+      } as unknown as vscode.ExtensionContext)
+      const instances = jest.mocked(EmailStorageManager).mock.instances
+      const storage = instances[instances.length - 1]
+      jest.mocked(storage.getEmailSummaries).mockReturnValue([])
+      // The constructor's mocked storage initially has no persisted summaries.
+      service['emails'] = []
+      jest
+        .mocked(vscode.window.showInformationMessage)
+        .mockResolvedValue(undefined)
+      const attachments = ['first.txt', 'second.txt'].map((filename) => ({
+        filename,
+        contentType: 'text/plain',
+        content: Buffer.from('attachment'),
+        size: 10,
+      }))
+      jest.mocked(simpleParser).mockImplementation(
+        async () =>
+          ({
+            messageId,
+            subject: 'UUID regression',
+            attachments,
+          }) as ParsedMail,
+      )
+      const rawEmail = Buffer.from('Subject: UUID regression\r\n\r\nBody')
+
+      await service['handleNewEmail'](rawEmail)
+      await service['handleNewEmail'](rawEmail)
+
+      const stored = jest
+        .mocked(storage.storeEmailFile)
+        .mock.calls.map(([email]) => email)
+      expect(stored).toHaveLength(2)
+      expect(stored[0].id).not.toBe(stored[1].id)
+      for (const [index, email] of stored.entries()) {
+        expect(email.id).toMatch(uuidPattern)
+        expect(email.messageId).toBe(messageId)
+        expect(email.source).toBe(rawEmail.toString('utf8'))
+        attachments.forEach((attachment, attachmentIndex) => {
+          expect(storage.storeAttachments).toHaveBeenNthCalledWith(
+            index * attachments.length + attachmentIndex + 1,
+            email.id,
+            attachment,
+          )
+        })
+      }
+      expect(service['emails'].map((email) => email.id)).toEqual(
+        stored.map((email) => email.id).reverse(),
+      )
+      expect(storage.updateEmailSummaries).toHaveBeenLastCalledWith(
+        service['emails'],
+      )
+    },
+  )
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 })

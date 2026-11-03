@@ -2,6 +2,7 @@ import type { Uri } from 'vscode'
 
 export interface Email {
   id: string
+  messageId?: string
   receivedDateTime: string
   subject: string
   from: string

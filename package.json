@@ -28,7 +28,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/reconka/"
   },
-  "version": "1.1.18",
+  "version": "1.1.19",
   "icon": "out/postie-profile.jpg",
   "activationEvents": [
     "onStartupFinished"
@@ -399,7 +399,7 @@
     "@vscode/l10n-dev": "^0.0.35",
     "esbuild": "^0.28.1",
     "eslint": "^9.39.4",
-    "glob": "^13.0.6",
+    "glob": "^14.0.3",
     "jest": "^30.3.0",
     "prettier": "^3.8.1",
     "ts-jest": "^29.4.6",
@@ -425,7 +425,7 @@
   },
   "overrides": {
     "@modelcontextprotocol/sdk": {
-      "@hono/node-server": "2.0.11"
+      "@hono/node-server": "2.1.6"
     },
     "deepmerge-ts": "^8.0.0",
     "doiuse-email": {

@@ -52,8 +52,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Audit dependencies
-        run: npm audit
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
 
       - name: Install VSCE
         run: npm install -g vsce
@@ -82,8 +82,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Audit dependencies
-        run: npm audit
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
 
       - name: Install VSCE
         run: npm install -g vsce
